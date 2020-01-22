@@ -142,9 +142,6 @@ $(document).ready(function(){
 
 							modal_clasificacion += '<div class="row"><input type="hidden" name="dato['+val.id+'][id]" value="'+val.id+'"><div class="col-md-4"><div class="form-group"><h4><strong>'+val.clasificacion_nombre+'</strong></h4></div></div><div class="col-md-4"><div class="form-group"><input class="form-control" type="text" name="dato['+val.id+'][clasificacion_min]" id="min-'+val.id+'" value="'+val.clasificacion_min+'" required="required" readonly="" style="pointer-events: none;"><p class="errorMin-'+val.id+' text-center alert alert-danger" style="display: none;"></p></div></div><div class="col-md-4"><div class="form-group"><input class="form-control" type="text" name="dato['+val.id+'][clasificacion_max]" id="max-'+val.id+'" value="'+val.clasificacion_max+'" required="required"><p class="errorMax-'+val.id+' text-center alert alert-danger" style="display: none;"></p></div></div></div>';
 
-
-							//modal_clasificacion += '<div class="row"><input type="hidden" name="dato['+val.id+'][id]" value="'+val.id+'"><div class="col-md-4"><div class="form-group"><h4><strong>Media</strong></h4></div></div><div class="col-md-4"><div class="form-group"><input class="form-control" type="text" name="dato['+val.id+'][clasificacion_min]" id="min-'+val.id+'" value="'+val.clasificacion_min+'" required="required"></div></div><div class="col-md-4"><div class="form-group"><input class="form-control" type="text" name="dato['+val.id+'][clasificacion_max]" id="max-'+val.id+'" value="'+val.clasificacion_max+'" required="required"></div></div></div>';
-
 							tbody_clasificacion += '<tr><td>'+val.clasificacion_nombre+'</td><td>'+val.clasificacion_min+'</td><td>'+val.clasificacion_max+'</td></tr>';
 
 						});
@@ -374,7 +371,6 @@ $(document).ready(function(){
 		return estatus;
 	}
 });
-
 
 $("#max-1").keyup(function () {
 	var value = $(this).val();
