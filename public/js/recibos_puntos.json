@@ -1,0 +1,20 @@
+{
+    "ejemplo1":{
+        "ID": 1,
+        "Nombre": "Juan Camilo Pardo",
+        "Ingreso": "2012-01-02",
+        "Puesto": "Vendedor"
+    },
+    "ejemplo2":{
+        "ID": 2,
+        "Nombre": "Johana Peña limón",
+        "Ingreso": "2009-04-22",
+        "Puesto": "Vendedor"
+    },
+    "ejemplo3":{
+        "ID": 3,
+        "Nombre": "Gilberto Cañedo López",
+        "Ingreso": "2009-09-17",
+        "Puesto": "Vendedor"
+    }
+}
