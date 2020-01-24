@@ -45,7 +45,7 @@ class UsersExport implements FromView, ShouldAutoSize
             break;
         }
 
-		return view('admin.plantillas_export.export_excel', [
+		return view('admin.reportes.empleados_excel', [
 			'data' => $empleados
 		]);
 	}

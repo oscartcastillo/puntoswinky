@@ -242,7 +242,7 @@ class ClientesController extends Controller
             }
         )->get();
 
-        $pdf = PDF::loadView('admin.plantillas_export.clientes_export_pdf', compact('clientes'));
+        $pdf = PDF::loadView('admin.reportes.clientes_pdf', compact('clientes'));
         return $pdf->download('clientes.pdf');
     }
 

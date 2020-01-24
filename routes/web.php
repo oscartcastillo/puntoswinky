@@ -28,6 +28,7 @@ Route::resource('bonos', 'BonosController');
 Route::resource('reportes', 'ReportesController');
 Route::resource('config', 'ConfigController');
 Route::resource('perfil', 'PerfilController');
+Route::resource('prueba', 'PruebasController');
 
 Route::get('/inicio', 'UsuariosController@inicio')->name('inicio');
 Route::get('/export_pdf','UsuariosController@export_pdf')->name('export_pdf');

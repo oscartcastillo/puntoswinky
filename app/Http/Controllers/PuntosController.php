@@ -119,7 +119,7 @@ class PuntosController extends Controller
                 return $this->send_mail($request->user_id, $transaccion);
             }*/
 
-            if( isset($request->imprimir) && $request->imprimir == 'si'){
+            if(isset($request->imprimir) && $request->imprimir == 'si'){
                 $transaccion['url'] = 'imprimir';
             }
 
@@ -537,6 +537,7 @@ class PuntosController extends Controller
         $transaccion = Transaccion::findOrFail($id);
         
         $pdf = PDF::loadView('admin.plantillas_export.transacciones', compact('transaccion'));
-        return $pdf->download('transaccion.pdf');
+        //return $pdf->download('transaccion.pdf');
+        return $pdf->stream();
     }
 }

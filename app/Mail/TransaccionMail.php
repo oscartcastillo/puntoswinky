@@ -36,6 +36,6 @@ class TransaccionMail extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.plantillas_export.estado_cuenta');
+        return $this->view('admin.reportes.estado_cuenta');
     }
 }

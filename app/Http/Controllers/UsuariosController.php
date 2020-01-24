@@ -425,7 +425,7 @@ class UsuariosController extends Controller
                 $empleados = '';
             break;
         }
-        $pdf = PDF::loadView('admin.plantillas_export.export_pdf', compact('empleados'));
+        $pdf = PDF::loadView('admin.reportes.empleados_pdf', compact('empleados'));
         return $pdf->download('empleados.pdf');
     }
 

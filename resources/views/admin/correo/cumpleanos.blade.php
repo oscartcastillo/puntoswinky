@@ -12,7 +12,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background:url("../img/background.jpg");
+        background:url("background.jpg");
         overflow: hidden;
       }
       .card {
@@ -91,7 +91,7 @@
         text-transform: uppercase;
       }
       .card-image.card2 {
-        background: url("../img/felicitaciones.jpg");
+        background: url("felicitaciones.jpg");
         background-size: cover;
       }
       .card-text.card2 .date {

@@ -13,7 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\PruebasCorreo'
+        'App\Console\Commands\VigenciaPuntos',
+        'App\Console\Commands\VigenciaBonos',
+        'App\Console\Commands\VigenciaClasificacion',
+        'App\Console\Commands\CorreCumpleanos',
     ];
 
     /**
@@ -24,7 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('pruebas:users')->dailyAt('07:00');
+        $schedule->command('vigencia:puntos')->dailyAt('11:20');
+        $schedule->command('vigencia:bonos')->dailyAt('11:30');
+        $schedule->command('vigencia:clasificacion')->dailyAt('11:40');
+        $schedule->command('correo:cumpleanos')->dailyAt('11:50');
         //$schedule->command('cumple:users')->daily()->at('17:40');
     }
 

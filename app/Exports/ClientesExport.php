@@ -18,7 +18,7 @@ class ClientesExport implements FromView, ShouldAutoSize
             }
         )->get();
 
-		return view('admin.plantillas_export.clientes_export_excel', [
+		return view('admin.reportes.clientes_excel', [
 			'data' => $clientes
 		]);
 	}

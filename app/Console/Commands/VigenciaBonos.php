@@ -3,26 +3,24 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-//use Illuminate\Support\Facades\Mail;
-//use App\Mail\CumpleMail;
-use App\Bono;
 use Carbon\Carbon;
+use App\Bono;
 
-class PruebasCorreo extends Command
+class VigenciaBonos extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'pruebas:users';
+    protected $signature = 'vigencia:bonos';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Enviar correo de prueba';
+    protected $description = 'Actualizar la vigencia de los bonos';
 
     /**
      * Create a new command instance.
@@ -41,11 +39,20 @@ class PruebasCorreo extends Command
      */
     public function handle()
     {
-        $bonos =  Bono::whereDate('bono_fin', '<', Carbon::today()->toDateString())->get();
-        foreach ($bonos as $bono) {
-            $bono->bono_estatus = 'vencido';
-            $bono->push();
+        
+        $bonos = Bono::where([
+            ['bono_estatus', 'activo'],
+            ['bono_fin','=',Carbon::now()->format('y-m-d')]
+        ])
+        ->get();
+
+        foreach ($bonos as $bono){
+            
+            Bono::where('id', $bono->id)
+                ->update([
+                    'bono_estatus' => 'vencido',
+                ]);
+        
         }
-        //Mail::to('murdokcas@gmail.com')->send(new CumpleMail($prueba));
     }
 }

@@ -11,16 +11,16 @@ class CumpleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $prueba;
+    public $cliente;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($prueba)
+    public function __construct($cliente)
     {
-        $this->prueba = $prueba;
+        $this->cliente = $cliente;
     }
 
     /**
