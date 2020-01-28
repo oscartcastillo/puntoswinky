@@ -3231,7 +3231,7 @@ input[type="button"].btn-block {
 .dropdown,
 .dropleft {
   position: relative;
-  background-color: #4d2770;
+  /*background-color: #4d2770;*/
 }
 
 .dropdown-toggle::after {
@@ -13665,7 +13665,7 @@ table.dataTable tbody tr {
 
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
   color: #fff;
-  background-color: #00635a;
+  /*background-color: #00635a;*/
   text-decoration: none;
 }
 
@@ -13689,7 +13689,7 @@ table.dataTable tbody tr {
 
 .app-nav__item {
   display: block;
-  padding: 15px;
+  padding: 10px 5px;
   line-height: 20px;
   color: #fff;
   -webkit-transition: background-color 0.3s ease;

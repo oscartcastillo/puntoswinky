@@ -10,12 +10,12 @@ $(document).ready(function(){
 		
 		switch(type) {
 			case 1://crear empresa
-				$('#exampleModalLabel').text('Crear Empresas');
+				$('#exampleModalLabel').text('Crear Sucursales');
 				$('#create_empresa').show();
 			break;
 			
 			case 2://editar empresa
-				$('#exampleModalLabel').text('Editar Empresas');
+				$('#exampleModalLabel').text('Editar Sucursales');
 				$('#edit_empresas').show();
 			break;
 
@@ -109,9 +109,7 @@ $(document).ready(function(){
 			e.preventDefault();
 			
 			var formData = new FormData(this);
-			
 			var respuesta = valida_clasificacion();
-			console.log(respuesta);
 		
 			if (respuesta) {
 
@@ -366,7 +364,6 @@ $(document).ready(function(){
 			$('.errorMax-2').text('La clasificacion Media no deben superar los puntos de Premium');
 			estatus = false;
 		}
-		console.log(max2 +" > " + max3);
 
 		return estatus;
 	}

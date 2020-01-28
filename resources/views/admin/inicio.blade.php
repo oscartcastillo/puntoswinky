@@ -4,7 +4,7 @@
             <div class="row user">
                 <div class="col-md-12 margin-botton">
                     <div class="profile">
-                        <div class="info"><img class="user-img" src="{{asset('img/perfil.png')}}">
+                        <div class="info"><img class="user-img" src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png">
                             @if (Auth::user()->perfil->perfil_genero == 'M')
                                 <h4>Bienvenido </h4>
                                 <h4>{{ Auth::user()->perfil->perfil_nombre }}</h4>

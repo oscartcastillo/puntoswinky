@@ -19,7 +19,7 @@ class CreatePerfilesTable extends Migration
             $table->string('perfil_apellidos', 100);
             $table->string('perfil_tarjeta', 12)->nullable();
             $table->string('perfil_genero', 1);
-            $table->date('perfil_nacimiento');
+            $table->date('perfil_nacimiento')->nullable();
             $table->string('perfil_celular', 12)->nullable();
             $table->string('perfil_compania', 50)->nullable();
             $table->integer('avatar_id')->unsigned()->nullable();

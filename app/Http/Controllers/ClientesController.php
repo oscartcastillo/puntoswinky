@@ -99,6 +99,7 @@ class ClientesController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make(Input::get('winkyfan'));
             $user->estatus = $request->estatus;
+            $user->puntos_reset = Carbon::now()->format('Y-m-d');
             $user->save();
 
             if (is_null($request->perfil_tarjeta) ) {

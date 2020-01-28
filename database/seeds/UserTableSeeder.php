@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
         $user->email = 'admin@gmail.com';
         $user->estatus = 'A';
         $user->password = bcrypt('secret');
+        $user->puntos_reset = '2000-10-10';
         $user->save();
         $user->assignRole('admin');
 
@@ -26,6 +27,7 @@ class UserTableSeeder extends Seeder
         $user->email = 'super@gmail.com';
         $user->estatus = 'A';
         $user->password = bcrypt('secret');
+        $user->puntos_reset = '2000-10-10';
         $user->save();
         $user->assignRole('super');
 
@@ -34,6 +36,7 @@ class UserTableSeeder extends Seeder
         $user->email = 'geren@gmail.com';
         $user->estatus = 'A';
         $user->password = bcrypt('secret');
+        $user->puntos_reset = '2000-10-10';
         $user->save();
         $user->assignRole('geren');
 
@@ -42,6 +45,7 @@ class UserTableSeeder extends Seeder
         $user->email = 'caje@gmail.com';
         $user->estatus = 'A';
         $user->password = bcrypt('secret');
+        $user->puntos_reset = '2000-10-10';
         $user->save();
         $user->assignRole('cajero');
 
@@ -49,7 +53,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'cliente';
         $user->email = 'cliente@gmail.com';
         $user->estatus = 'A';
-        $user->password = bcrypt('secret');
+        $user->password = bcrypt('winkyfan');
+        $user->puntos_reset = '2000-10-10';
         $user->save();
         $user->assignRole('cliente');
     }

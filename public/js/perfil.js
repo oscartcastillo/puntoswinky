@@ -19,7 +19,7 @@ $(document).ready(function (e) {
 			contentType: false,
 			processData: false,
 			success:function(data){
-				$('#img-avatar').attr('src', url+'/img/avatar-'+data.avatar+'.png');
+				avatar(data.avatar);
 				$('#exampleModalCenter').modal('hide');
 			}
 		});

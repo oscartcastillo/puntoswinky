@@ -32,7 +32,8 @@
         <ul class="app-nav">
             <li class="dropdown">
                 <a class="app-nav__item text-uppercase" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
-                    <i class="fa fa-user fa-lg"></i>
+                    {{-- <i class="fa fa-user fa-lg"></i> --}}
+                    <img src="{{ asset('img/avatar-0.png') }}" alt="" style="width: 40px;">
                 </a>
                 <ul id="options" class="dropdown-menu settings-menu dropdown-menu-right">
                     <li><a class="dropdown-item" href="{{ route('perfil.index') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
@@ -48,7 +49,9 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <div class="app-sidebar__user">
-            <img class="app-sidebar__user-avatar" src="{{ asset('img/perfil.png') }}" alt="User Image">
+            {{--<img id="img-avatar" class="user-img avatar-4" src="http://puntos4.test.uvp.mx/img/avatar-4.png">
+             src="{{ asset('img/perfil.png') }}"  --}}
+            <img class="app-sidebar__user-avatar user-img" src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png" alt="User Image" style="width: 40%;">
             <div>
             </div>
         </div>
@@ -63,7 +66,7 @@
             @if (Auth::User()->hasRole('admin') || Auth::User()->hasRole('super') || Auth::User()->hasRole('geren') || Auth::User()->hasRole('cajero')) 
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview">
-                        <i class="app-menu__icon fa fa-pie-chart"></i>
+                        <i class="app-menu__icon fas fa-users"></i>
                         <span class="app-menu__label">Usuarios</span>
                         <i class="treeview-indicator fa fa-angle-right"></i>
                     </a>
@@ -84,19 +87,19 @@
                 </li>
                 <li>
                     <a class="app-menu__item" href="{{ route('promociones.index') }}">
-                        <i class="app-menu__icon fa fa-pie-chart"></i>
+                        <i class="app-menu__icon fas fa-wallet"></i>
                         <span class="app-menu__label">Promociones</span>
                     </a>
                 </li>
                 <li>
                     <a class="app-menu__item" href="{{ route('bonos.index') }}">
-                        <i class="app-menu__icon fa fa-pie-chart"></i>
+                        <i class="app-menu__icon fas fa-shopping-cart"></i>
                         <span class="app-menu__label">Bonos</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview">
-                        <i class="app-menu__icon fa fa-laptop"></i>
+                        <i class="app-menu__icon fas fa-coins"></i>
                         <span class="app-menu__label">Puntos</span>
                         <i class="treeview-indicator fa fa-angle-right"></i>
                     </a>
@@ -111,7 +114,7 @@
                 </li>
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview">
-                        <i class="app-menu__icon fa fa-laptop"></i>
+                        <i class="app-menu__icon fas fa-gift"></i>
                         <span class="app-menu__label">Premios</span>
                         <i class="treeview-indicator fa fa-angle-right"></i>
                     </a>
@@ -124,15 +127,25 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a class="app-menu__item" href="{{ route('reportes.index') }}">
-                        <i class="app-menu__icon fas fa-file-alt"></i>
+                <li class="treeview">
+                    <a class="app-menu__item" href="#" data-toggle="treeview">
+                        <i class="app-menu__icon fas fa-chart-line"></i>
                         <span class="app-menu__label">Reportes</span>
+                        <i class="treeview-indicator fa fa-angle-right"></i>
                     </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a class="treeview-item" href="{{ route('reportes.index') }}"><i class="icon fa fa-circle-o"></i>Reportes Generales</a>
+                        </li>
+                        <li>
+                            <a class="treeview-item" href="{{ route('encuestas.index') }}"><i class="icon fa fa-circle-o"></i>Encuestas Winky</a>
+                        </li>
+                    </ul>
                 </li>
+                
                 <li>
                     <a class="app-menu__item" href="{{ route('config.index') }}">
-                        <i class="app-menu__icon fa fa-file-text"></i>
+                        <i class="app-menu__icon fas fa-cogs"></i>
                         <span class="app-menu__label">Configuración</span>
                     </a>
                 </li>
@@ -318,6 +331,10 @@
 
         @case('/perfil')
             <script type="text/javascript" src="{{ asset('js/perfil.js')}}"></script>
+            @break
+
+        @case('/encuesta')
+            <script type="text/javascript" src="{{ asset('js/encuesta.js')}}"></script>
             @break
     
         @default

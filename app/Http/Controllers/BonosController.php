@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
-
-use Response;
-use Validator;
 
 use App\Perfil;
 use App\User;
 use App\Bono;
 use App\BonoDetalle;
+
+use Response;
+use Validator;
 
 class BonosController extends Controller
 {

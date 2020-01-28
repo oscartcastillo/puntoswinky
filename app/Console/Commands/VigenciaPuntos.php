@@ -39,7 +39,7 @@ class VigenciaPuntos extends Command
     {
         $data = File::get("json/config.json");
         $json = json_decode($data, true);
-        $reset_clasificacion = $json['tiempo_clasificacion'];
+        $vigencia = $json['vigencia'];
 
         $users = User::where([
             ['estatus','A'],
@@ -50,44 +50,25 @@ class VigenciaPuntos extends Command
         
         foreach ($users as $user){
             
-            $created = new Carbon($user->created_at);
-            
+            $created = new Carbon($user->puntos_reset);
             $difference = $created->diff($now);
-            $residuo = $difference->m % $reset_clasificacion;
+            
+            $meses = ($difference->y * 12) + $difference->m;
 
-            if ($difference->d == 0 && $residuo == 0){
-                $puntos = $this->obten_puntos($user->id);
-                $clasificacion_id = $this->obten_clasificacion($puntos);
+            if($meses == $vigencia && $difference->d == 0){
                 
-                Perfil::where('user_id', $user->id)->update(['perfil_clasificaicon' => $clasificacion_id]);
-
-                /*Transaccion::where([
+                $transaccion = Transaccion::where([
                     ['user_id', $user->id],
                     ['transaccion_estatus', 'Activo']
-                ])->update(['transaccion_estatus' => 'Inactivo']);*/
+                ])->update(['transaccion_estatus' => 'Inactivo']);
+
+                if ($transaccion){
+                    User::where('id', $user->id)
+                    ->update([
+                        'puntos_reset' => $now
+                    ]);
+                }
             }
         }
-    }
-    public function obten_clasificacion($puntos){
-
-        $clasicaciones = Clasificacion::all();
-        foreach($clasicaciones as $clasicacion){
-            if($clasicacion->clasificacion_min <= $puntos && $clasicacion->clasificacion_max >= $puntos){
-                $valor = $clasicacion->id;
-            }
-        }
-        return $valor;
-    }
-
-    public function obten_puntos($id){
-        $puntos = User::join('transacciones', 'users.id' , '=', 'transacciones.user_id')
-            ->where([
-                ['transacciones.user_id', '=', $id],
-                ['transacciones.transaccion_tipo', '!=', 'Cancelacion'],
-                ['transacciones.transaccion_estatus', 'Activo']
-            ])
-            ->sum('transacciones.transaccion_abono');
-
-        return $puntos;
     }
 }

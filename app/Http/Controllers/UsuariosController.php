@@ -228,6 +228,7 @@ class UsuariosController extends Controller
             $user->email = strtolower($request->email);
             $user->password = 'winkyfan';
             $user->estatus = $request->estatus;
+            $user->puntos_reset = Carbon::now()->format('Y-m-d');
             $user->save();
 
             $tarjeta_new = str_pad($user->id, 12, "0", STR_PAD_LEFT);

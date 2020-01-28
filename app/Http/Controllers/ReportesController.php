@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Transaccion;
 use App\User;
 use App\Perfil;
+use App\TipoPerfil;
+use App\Empresa;
 use Carbon\Carbon;
 use DB;
 
@@ -341,5 +343,17 @@ class ReportesController extends Controller
             default:
                 break;
         }
+    }
+
+    public function encuesta(Request $request)
+    {
+        $tipo_perfiles = TipoPerfil::where('tipo_perfil_nombre', '!=', 'Personal')->get();
+        $empresas = Empresa::all();
+        return view('admin.encuesta', compact('tipo_perfiles', 'empresas'));
+    }
+
+    public function respuesta_encuesta(Request $request)
+    {
+
     }
 }

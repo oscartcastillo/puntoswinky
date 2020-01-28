@@ -21,6 +21,7 @@ class PerfilTableSeeder extends Seeder
         $perfil->perfil_nacimiento = '1993-02-25';
         $perfil->perfil_celular = NULL;
         $perfil->perfil_compania = NULL;
+        $perfil->avatar_id = 0;
         $perfil->tipo_perfil_id = 1;
         $perfil->clasificacion_id = NULL;
         $perfil->empresa_id = 1;
@@ -39,6 +40,7 @@ class PerfilTableSeeder extends Seeder
         $perfil->perfil_nacimiento = '1992-04-24';
         $perfil->perfil_celular = NULL;
         $perfil->perfil_compania = NULL;
+        $perfil->avatar_id = 0;
         $perfil->tipo_perfil_id = 1;
         $perfil->clasificacion_id = NULL;
         $perfil->empresa_id = 1;
@@ -57,6 +59,7 @@ class PerfilTableSeeder extends Seeder
         $perfil->perfil_nacimiento = '1990-05-20';
         $perfil->perfil_celular = NULL;
         $perfil->perfil_compania = NULL;
+        $perfil->avatar_id = 0;
         $perfil->tipo_perfil_id = 1;
         $perfil->clasificacion_id = NULL;
         $perfil->empresa_id = 1;
@@ -75,6 +78,7 @@ class PerfilTableSeeder extends Seeder
         $perfil->perfil_nacimiento = '1980-08-14';
         $perfil->perfil_celular = NULL;
         $perfil->perfil_compania = NULL;
+        $perfil->avatar_id = 0;
         $perfil->tipo_perfil_id = 1;
         $perfil->clasificacion_id = NULL;
         $perfil->empresa_id = 1;
@@ -93,6 +97,7 @@ class PerfilTableSeeder extends Seeder
         $perfil->perfil_nacimiento = '1996-08-23';
         $perfil->perfil_celular = '2555212125';
         $perfil->perfil_compania = 'telcel';
+        $perfil->avatar_id = 0;
         $perfil->tipo_perfil_id = 2;
         $perfil->clasificacion_id = '1';
         $perfil->empresa_id = 1;

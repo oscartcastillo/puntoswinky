@@ -29,6 +29,7 @@ Route::resource('reportes', 'ReportesController');
 Route::resource('config', 'ConfigController');
 Route::resource('perfil', 'PerfilController');
 Route::resource('prueba', 'PruebasController');
+Route::resource('encuestas', 'EncuestaController');
 
 Route::get('/inicio', 'UsuariosController@inicio')->name('inicio');
 Route::get('/export_pdf','UsuariosController@export_pdf')->name('export_pdf');
@@ -50,6 +51,7 @@ Route::get('get_puntos/{id}', 'PuntosController@getDatos');
 Route::get('estado_cuenta/{id}/{tipo}','PuntosController@export_pdf');
 Route::get('valida_transaccion/{id}', 'PuntosController@valida_transaccion')->name('valida_transaccion');
 Route::get('listado_puntos', 'PuntosController@listado_puntos')->name('listado_puntos');
+Route::get('transacciones/{id}', 'PuntosController@imprime')->name('transacciones');
 //Route::get('estado_cuenta/{id}','PuntosController@export_pdf')->name('estado_cuenta_pdf');
 
 Route::get('get_bonos/{id}', 'BonosController@getDatos');
@@ -60,17 +62,16 @@ Route::post('actualiza/{id}', 'PremiosController@update')->name('actualiza');
 Route::post('/ajax_upload', 'PremiosController@store')->name('ajaxupload');
 
 
-Route::get('transacciones/{id}', 'PuntosController@imprime')->name('transacciones');
-
 
 Route::post('actualiza_empresa', 'ConfigController@update')->name('actualiza_empresa');
 Route::post('actualiza_clasificacion', 'ConfigController@clasificaciones')->name('actualiza_clasificacion');
 
-
 Route::post('reset_pass', 'PerfilController@pass')->name('reset_pass');
 
-
 Route::get('genera_reporte', 'ReportesController@genera_reporte')->name('genera_reporte');
+
+//Route::get('encuesta_reporte', 'ReportesController@encuesta')->name('encuesta_reporte');
+//Route::post('respuesta_encuesta', 'ReportesController@respuesta_encuesta')->name('respuesta_encuesta');
 
 Route::view('calendario', 'admin.calendario', [
 	'promociones' => App\Promocion::all()

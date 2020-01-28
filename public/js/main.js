@@ -93,7 +93,7 @@ function actualiza_td(){
 		}
 	});
 
-	$(".user-img").each(function(index) {
+	/*$(".user-img").each(function(index) {
 		
 		var url = location.origin;
 		
@@ -124,7 +124,7 @@ function actualiza_td(){
 		if ($(this).hasClass('avatar-8')) {
 			$(this).attr('src', url+'/img/avatar-8.png');
 		}
-	});
+	});*/
 
 	$(".tarjeta").each(function(index) {
 		var input = $(this).hasClass( "form-control");
@@ -149,6 +149,9 @@ function actualiza_td(){
 	});
 
 	console.log("se actualizaron los datos");
+
+
+
 }
 
 (function($) {
@@ -166,6 +169,19 @@ function actualiza_td(){
 		});
 	};
 }(jQuery));
+
+
+function avatar(id){
+
+	$(".user-img").each(function(index) {
+		
+		var url = location.origin;
+
+		$(this).removeAttr('src');
+		
+		$(this).attr('src', url+'/img/avatar-'+id+'.png');
+	});
+}
 
 $(".entero").inputFilter(function(value) {
 	return /^\d*$/.test(value);

@@ -13,13 +13,14 @@ class TransaccionesTableSeeder extends Seeder
     {
 
         DB::table('transacciones')->insert([
-            'transaccion_ticket' => '186408',
+            'transaccion_ticket' => '2019-11-10/01/20',
             'transaccion_fecha' => '2019-11-10',
             'transaccion_cantidad' => '24.00',
             'transaccion_puntos_extras' => NULL,
             'transaccion_descripcion' => NULL,
             'transaccion_abono' => '1.20',
             'transaccion_tipo' => 'Acumulados',
+            'transaccion_estatus' => 'Activo',
             'premio_id' => NULL,
             'promocion_id' => '1',
             'empresa_id' => '1',

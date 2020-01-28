@@ -24,7 +24,7 @@ class Perfil extends Model
 
     public function tipo_perfil(){
 		
-        return $this->belongsTo('App\TipoPerfiles');
+        return $this->belongsTo('App\TipoPerfil');
 	}
 
     public function clasificacion(){

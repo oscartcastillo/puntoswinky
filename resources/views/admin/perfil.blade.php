@@ -30,7 +30,7 @@
 		<div class="user p-3">
 			<div class="profile row">
 				<div class="info col-12">
-					<img id="img-avatar" class="user-img avatar-{{ Auth::User()->perfil->avatar_id }}">
+					<img id="img-avatar" class="user-img" src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png">
 					<br>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Cambiar Avatar</button>
 				</div>
@@ -72,7 +72,23 @@
 							<div class="cc-selector">
 								<div class="row">
 									<div class="col-md-3">
-										<input id="avatar-5" type="radio" name="avatar" value="5" checked="checked"/>
+										<input id="avatar-1" type="radio" name="avatar" value="1" checked="checked"/>
+										<label class="drinkcard-cc avatar-1" for="avatar-1"></label>
+									</div>
+									<div class="col-md-3">
+										<input id="avatar-2" type="radio" name="avatar" value="2"/>
+										<label class="drinkcard-cc avatar-2" for="avatar-2"></label>
+									</div>
+									<div class="col-md-3">
+										<input id="avatar-3" type="radio" name="avatar" value="3"/>
+										<label class="drinkcard-cc avatar-3" for="avatar-3"></label>
+									</div>
+									<div class="col-md-3">
+										<input id="avatar-4" type="radio" name="avatar" value="4"/>
+										<label class="drinkcard-cc avatar-4" for="avatar-4"></label>
+									</div>
+									<div class="col-md-3">
+										<input id="avatar-5" type="radio" name="avatar" value="5"/>
 										<label class="drinkcard-cc avatar-5" for="avatar-5"></label>
 									</div>
 									<div class="col-md-3">
