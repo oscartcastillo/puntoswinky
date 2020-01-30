@@ -26,6 +26,25 @@ class EncuestaController extends Controller
         'sucursal' => 'required',
         'difusion' => 'required',
     ];
+
+    protected $rules2 =
+    [
+        'pregunta_1' => 'required',
+        'pregunta_2' => 'required',
+        'pregunta_3' => 'required',
+        'pregunta_4' => 'required',
+        'pregunta_5' => 'required',
+        'pregunta_6' => 'required'
+    ];
+
+    protected $rules3 =
+    [
+        'pregunta_7' => 'required',
+        'pregunta_8' => 'required',
+        'pregunta_9' => 'required',
+        'pregunta_10' => 'required'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -66,19 +85,28 @@ class EncuestaController extends Controller
                 }
             break;
             case 2:
-                $this->primer_form($datos);
+                $validator = Validator::make($datos, $this->rules2);
+                if ($validator->fails()) {
+                    return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+                }
             break;
             case 3:
-                $this->segundo_form($datos);
+                $validator = Validator::make($datos, $this->rules3);
+                if ($validator->fails()) {
+                    return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+                }
             break;
-            case 4:
-                $this->guarda_informacion();
-            break;
-        }     
+        }
+        if(!isset($request->operation)){
+            $respuesta = $this->guarda_informacion($datos);
+            
+            return response()->json($respuesta);
+        }    
     }
 
-    public function guarda_informacion()
+    public function guarda_informacion($datos)
     {
+        
         $encuestas = new Encuesta();
         $encuestas->nombre = $request->nombre;
         $encuestas->email = $request->correo;

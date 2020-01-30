@@ -246,6 +246,16 @@
             width: 100%;
             object-fit: cover
         }
+        .series-m{
+            padding: 15px 0px;
+        }
+        .rad{
+            margin: 5px !important;
+            width: 25% !important;
+        }
+        .series-m .col-12 label{
+            display: flex;
+        }
         @media (max-width: 600px) {
             .radios{
                 display: flex;
@@ -263,6 +273,7 @@
             .respues-m{
                 padding: 5% 0%;
             }
+
         }
     </style>
     <div class="container">
@@ -280,352 +291,431 @@
                                     <li id="payment"><strong>Servicio</strong></li>
                                     <!--<li id="confirm"><strong>Finish</strong></li>-->
                                 </ul>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Información Personal</h2>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nombre">Nombre :</label>
-                                                    <input type="text" id="nombre" class="form-control" placeholder="Escriba su nombre porfavor">
-                                                    <p class="errorNombre text-center alert alert-danger" style="display: none;"></p>
+                                <form id="form-encuesta">
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Información Personal</h2>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="nombre">Nombre :</label>
+                                                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Escriba su nombre porfavor">
+                                                        <p class="errorNombre text-center alert alert-danger" style="display: none;"></p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="correo">Correo :</label>
-                                                    <input type="email" id="correo" class="form-control" placeholder="Escriba su correo">
-                                                    <p class="errorCorreo text-center alert alert-danger" style="display: none;"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sexo">Sexo:</label>
-                                            <select id="sexo" class="custom-select">
-                                                <option value="">Seleccione su sexo</option>
-                                                <option value="A">Masculino</option>
-                                                <option value="B">Femenino</option>
-                                            </select>
-                                            <p class="errorSexo text-center alert alert-danger" style="display: none;"></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="edad">Edad :</label>
-                                            <select id="edad" class="custom-select">
-                                                <option value="">Seleccione su edad</option>
-                                                <option value="A">Menor de 29 años</option>
-                                                <option value="B">De 30 a 40 años</option>
-                                                <option value="C">Mayor a 40 años</option>
-                                            </select>
-                                            <p class="errorEdad text-center alert alert-danger" style="display: none;"></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tipoperfil">Perfil :</label>
-                                            <select id="tipo" class="custom-select">
-                                                <option value="">Seleccion su perfil</option>
-                                                @foreach ($perfiles as $perfil)
-                                                    <option value="{{$perfil->id}}">{{$perfil->tipo_perfil_nombre}}</option>
-                                                @endforeach
-                                            </select>
-                                            <p class="errorTipo text-center alert alert-danger" style="display: none;"></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sucursal">Sucursal :</label>
-                                            <select id="sucursal" class="custom-select">
-                                                <option value="">Seleccione la sucursal</option>
-                                                @foreach ($empresas as $empresa)
-                                                    <option value="{{$empresa->id}}">{{$empresa->empresa_nombre}}</option>
-                                                @endforeach
-                                            </select>
-                                            <p class="errorSucursal text-center alert alert-danger" style="display: none;"></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nosotros">¿Como te enteraste de nosotros?</label>
-                                            <select id="difusion" class="custom-select">
-                                                <option value="">Selecciona alguna opcion</option>
-                                                <option value="1">Redes Sociales</option>
-                                                <option value="2">Ubicación</option>
-                                                <option value="3">Recomendación</option>
-                                                <option value="4">Revista</option>
-                                                <option value="5">Otro</option>
-                                            </select>
-                                            <p class="errorNosotros text-center alert alert-danger" style="display: none;"></p>
-                                        </div>
-                                    </div>
-                                    <input id="btn-personal" type="button" name="next" class="next action-button" value="Continuar"/>
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Atención</h2>
-                                        <div class="d-none d-lg-block">
-                                            <div class="row" style="padding: 30px 0px;">
-                                                <div class="col-lg-6 ">
-                                                    Preguntas
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="row p-0">
-                                                        <div class="col-lg-3 text-center">Excelente</div>
-                                                        <div class="col-lg-3 text-center">Bueno</div>
-                                                        <div class="col-lg-3 text-center">Regular</div>
-                                                        <div class="col-lg-3 text-center">Malo</div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="correo">Correo :</label>
+                                                        <input type="email" id="correo" name="correo" class="form-control" placeholder="Escriba su correo">
+                                                        <p class="errorCorreo text-center alert alert-danger" style="display: none;"></p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                A) ¿En general que tal fue la atención a su servicio?
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row respues-m">
-                                                    <div class="col-12 col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="1" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input  type="radio" name="1" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="1" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-12 col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="1" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                B) La atención del cajero fue...
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row respues-m">
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="2" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="2" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="2" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="2" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                C) ¿Qué te parecen nuestros precios?
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="3" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="3" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="3" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="3" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                D) ¿Cómo calificas el sabor de nuestros platillos?
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="4" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="4" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="4" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="4" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                E) ¿Cómo calificas la higiene de nuestros platillos?
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="5" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="5" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="5" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="5" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                F) ¿El servicio de internet fue...?
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="6" value="A" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Excelente</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="6" value="B" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Bueno</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="6" value="C" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Regular</h6>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-3 text-center">
-                                                        <label class="radios">
-                                                            <input type="radio" name="6" value="D" required="required" class="radius">
-                                                            <h6 class="d-block d-lg-none">Malo</h6>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>-->
-                                    <input type="button" name="next" class="next action-button" value="Next Step"/>
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Servicio</h2>
-                                        <!--<div class="radio-group">
-                                            <div class='radio' data-value="credit">
-                                                <img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px">
-                                            </div>
-                                            <div class='radio' data-value="paypal">
-                                                <img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px">
-                                            </div>
-                                        </div>
-                                        <label class="pay">Card Holder Name*</label>
-                                        <input type="text" name="holdername" placeholder=""/>
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <label class="pay">Card Number*</label>
-                                                <input type="text" name="cardno" placeholder="" />
-                                            </div>
-                                            <div class="col-3"> <label class="pay">CVC*</label>
-                                                <input type="password" name="cvcpwd" placeholder="***" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label class="pay">Expiry Date*</label>
-                                            </div>
-                                            <div class="col-9">
-                                                <select class="list-dt" id="month" name="expmonth">
-                                                    <option selected>Month</option>
-                                                    <option>January</option>
-                                                    <option>February</option>
-                                                    <option>March</option>
-                                                    <option>April</option>
-                                                    <option>May</option>
-                                                    <option>June</option>
-                                                    <option>July</option>
-                                                    <option>August</option>
-                                                    <option>September</option>
-                                                    <option>October</option>
-                                                    <option>November</option>
-                                                    <option>December</option>
+                                            <div class="form-group">
+                                                <label for="sexo">Sexo:</label>
+                                                <select id="sexo" name="sexo" class="custom-select">
+                                                    <option value="">Seleccione su sexo</option>
+                                                    <option value="M">Masculino</option>
+                                                    <option value="F">Femenino</option>
                                                 </select>
-                                                <select class="list-dt" id="year" name="expyear">
-                                                    <option selected>Year</option>
-                                                </select>
+                                                <p class="errorSexo text-center alert alert-danger" style="display: none;"></p>
                                             </div>
-                                        </div>-->
-
-                                    </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                    <input type="button" name="make_payment" class="next action-button" value="Confirm"/>
-                                </fieldset>
-                                <fieldset>
+                                            <div class="form-group">
+                                                <label for="edad">Edad :</label>
+                                                <select id="edad" name="edad" class="custom-select">
+                                                    <option value="">Seleccione su edad</option>
+                                                    <option value="1">Menor de 29 años</option>
+                                                    <option value="2">De 30 a 40 años</option>
+                                                    <option value="3">Mayor a 40 años</option>
+                                                </select>
+                                                <p class="errorEdad text-center alert alert-danger" style="display: none;"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tipoperfil">Perfil :</label>
+                                                <select id="tipo" name="tipo" class="custom-select">
+                                                    <option value="">Seleccion su perfil</option>
+                                                    @foreach ($perfiles as $perfil)
+                                                        <option value="{{$perfil->id}}">{{$perfil->tipo_perfil_nombre}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <p class="errorTipo text-center alert alert-danger" style="display: none;"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sucursal">Sucursal :</label>
+                                                <select id="sucursal" name="sucursal" class="custom-select">
+                                                    <option value="">Seleccione la sucursal</option>
+                                                    @foreach ($empresas as $empresa)
+                                                        <option value="{{$empresa->id}}">{{$empresa->empresa_nombre}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <p class="errorSucursal text-center alert alert-danger" style="display: none;"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nosotros">¿Como te enteraste de nosotros?</label>
+                                                <select id="difusion" name="difusion" class="custom-select">
+                                                    <option value="">Selecciona alguna opcion</option>
+                                                    <option value="1">Redes Sociales</option>
+                                                    <option value="2">Ubicación</option>
+                                                    <option value="3">Recomendación</option>
+                                                    <option value="4">Revista</option>
+                                                    <option value="5">Otro</option>
+                                                </select>
+                                                <p class="errorNosotros text-center alert alert-danger" style="display: none;"></p>
+                                            </div>
+                                        </div>
+                                        <input id="btn-personal" type="button" name="next" class="next action-button" value="Continuar"/>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Atención</h2>
+                                            <div class="d-none d-lg-block">
+                                                <div class="row" style="padding: 30px 0px;">
+                                                    <div class="col-lg-6 ">
+                                                        Preguntas
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="row p-0">
+                                                            <div class="col-lg-3 text-center">Excelente</div>
+                                                            <div class="col-lg-3 text-center">Bueno</div>
+                                                            <div class="col-lg-3 text-center">Regular</div>
+                                                            <div class="col-lg-3 text-center">Malo</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    A) ¿En general que tal fue la atención a su servicio?
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-12 col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_1" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-12 col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input  type="radio" name="pregunta_1" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-12 col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_1" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-12 col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_1" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div> 
+                                                    </div>
+                                                    <p class="errorPregunta1 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    B) La atención del cajero fue...
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_2" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_2" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_2" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_2" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <p class="errorPregunta2 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    C) ¿Qué te parecen nuestros precios?
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_3" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_3" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_3" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_3" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <p class="errorPregunta3 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    D) ¿Cómo calificas el sabor de nuestros platillos?
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_4" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_4" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_4" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_4" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <p class="errorPregunta4 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    E) ¿Cómo calificas la higiene de nuestros platillos?
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_5" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_5" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_5" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_5" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <p class="errorPregunta5 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    F) ¿El servicio de internet fue...?
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row respues-m">
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_6" value="A" class="radius">
+                                                                <h6 class="d-block d-lg-none">Excelente</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_6" value="B" class="radius">
+                                                                <h6 class="d-block d-lg-none">Bueno</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_6" value="C" class="radius">
+                                                                <h6 class="d-block d-lg-none">Regular</h6>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-3 text-center">
+                                                            <label class="radios">
+                                                                <input type="radio" name="pregunta_6" value="D" class="radius">
+                                                                <h6 class="d-block d-lg-none">Malo</h6>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <p class="errorPregunta6 text-center alert alert-danger" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="next" class="next action-button" value="Continuar"/>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <h2 class="fs-title">Servicio</h2>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            G) Tu servicio fue entre las...
+                                                        </div>
+                                                        <div class="col-md-6 series-m">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label>
+                                                                        <input type="radio" name="pregunta_7" value="A" class="rad">
+                                                                        <h6>08:00-11:00 hrs</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input  type="radio" name="pregunta_7" value="B" class="rad">
+                                                                        <h6>11:00-14:00 hrs</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input type="radio" name="pregunta_7" value="C" class="rad">
+                                                                        <h6>14:00-17:00 hrs</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input type="radio" name="pregunta_7" value="D" class="rad">
+                                                                        <h6>17:00-20:00 hrs</h6>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="errorPregunta7 text-center alert alert-danger" style="display: none;"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            H) ¿Cuánto tardó tu servicio?
+                                                        </div>
+                                                        <div class="col-md-6 series-m">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label>
+                                                                        <input type="radio" name="pregunta_8" value="A" class="rad">
+                                                                        <h6>5 a 10 min</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input  type="radio" name="pregunta_8" value="B" class="rad">
+                                                                        <h6>10 a 15 min</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input type="radio" name="pregunta_8" value="C" class="rad">
+                                                                        <h6>15 a 20 min</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input type="radio" name="pregunta_8" value="D" class="rad">
+                                                                        <h6>20 o más</h6>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="errorPregunta8 text-center alert alert-danger" style="display: none;"></p>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            I) ¿Nos recomendarías?
+                                                        </div>
+                                                        <div class="col-md-6 series-m">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label>
+                                                                        <input type="radio" name="pregunta_9" value="A" class="rad">
+                                                                        <h6>Si</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input  type="radio" name="pregunta_9" value="B" class="rad">
+                                                                        <h6>Tal vez</h6>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-12 text-center">
+                                                                    <label class="radios">
+                                                                        <input type="radio" name="pregunta_9" value="C" class="rad">
+                                                                        <h6>No</h6>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="errorPregunta9 text-center alert alert-danger" style="display: none;"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            J) ¿Qué otros platillos o bebidas te gustaría ver en el menú ?
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <textarea id="pregunta_10" name="pregunta_10" rows="5" placeholder="Escribe tu comentario"></textarea>
+                                                        </div>
+                                                        <p class="errorPregunta10 text-center alert alert-danger" style="display: none;"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="make_payment" class="next action-button" value="Confirm"/>
+                                    </fieldset>
+                                </form>
+                                
+                                <fieldset style="display: none;">
                                     <div class="form-card">
                                         <h2 class="fs-title text-center">Success !</h2> <br><br>
                                         <div class="row justify-content-center">
@@ -642,6 +732,7 @@
                                         </div>
                                     </div>
                                 </fieldset>
+
                             </div>
                         </div>
                     </div>
@@ -651,8 +742,6 @@
     </div>
 
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/encuesta.js') }}"></script>
 </body>
