@@ -7,7 +7,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div id="encuesta" class="col-2" style="background-color: white; padding: 2%">
+				<div class="col-md-12 bg-white text-center p-3">
+					<h4>Reporte Encuesta</h4>
+				</div>
+				<div id="encuesta" class="col-lg-2" style="background-color: white; padding: 1%;">
 					<div class="form-group">
 						<label for="fechauno">Fecha Inicial:</label>
 						<input type="date" id="fecha1" class="form-control">
@@ -31,9 +34,9 @@
 						<label for="edad">Edad :</label>
 						<select id="edad" class="custom-select">
 							<option value="">Edad</option>
-							<option value="A">Menor de 29 años</option>
-							<option value="B">De 30 a 40 años</option>
-							<option value="C">Mayor de 40 años</option>
+							<option value="1">Menor de 29 años</option>
+							<option value="2">De 30 a 40 años</option>
+							<option value="3">Mayor de 40 años</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -56,7 +59,8 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-9" style="background-color: white; padding: 2%; margin: 0% .5%;">
+				<div class="col-lg-10 text-center" style="background-color: white;">
+					<button class="btn btn-primary float-right">Exportar</button>
 					<div id="reporte"></div>
 				</div>
 			</div>

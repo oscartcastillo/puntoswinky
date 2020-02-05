@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Empresa;
 use App\TipoPerfil;
 use App\Encuesta;
+use App\Respuesta;
 
 use Response;
 use Validator;
@@ -19,7 +21,7 @@ class EncuestaController extends Controller
     protected $rules1 =
     [
         'nombre' => 'required',
-        'correo' => 'required',
+        'email' => 'required|email|unique:encuestas',
         'sexo' => 'required',
         'edad' => 'required',
         'tipo' => 'required',
@@ -52,6 +54,13 @@ class EncuestaController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            
+            $tipo_perfiles = TipoPerfil::where('tipo_perfil_nombre', '!=', 'Personal')->get();
+            $empresas = Empresa::all();
+            return view('admin.encuesta_reporte', compact('tipo_perfiles', 'empresas'));
+        }
+        
         $perfiles = TipoPerfil::where('tipo_perfil_nombre', '!=', 'Personal')->get();
         $empresas = Empresa::all();
         return view('inicio.encuesta', compact('perfiles', 'empresas'));
@@ -75,8 +84,13 @@ class EncuestaController extends Controller
      */
     public function store(Request $request)
     {
-
         $datos = Input::all();
+        
+        if(Auth::check() && $request->operation == 'Auth'){
+            $respuesta = $this->genera_reporte($datos);
+            return response()->json($respuesta);
+        }
+        
         switch ($request->operation) {
             case 1:
                 $validator = Validator::make($datos, $this->rules1);
@@ -99,23 +113,63 @@ class EncuestaController extends Controller
         }
         if(!isset($request->operation)){
             $respuesta = $this->guarda_informacion($datos);
-            
             return response()->json($respuesta);
         }    
+    }
+
+    public function genera_reporte($datos)
+    {
+        $fecha1 = $datos['fecha1'];
+        $fecha2 = $datos['fecha2'];
+        
+        $perfil = ($datos['perfil'] != '') ? $datos['perfil'] : ['2','3','4','5','6'];
+        $edad = $datos['edad'];
+        $sucursal = $datos['sucursal'];
+        $horas = $datos['horas'];
+        
+        $respuesta  = Encuesta::join('respuestas', 'respuestas.user_id','=','encuestas.id')
+            ->whereBetween($fecha1, $fecha2)
+            ->whereIn([
+                ['encuestas.tipo_perfil_id', $perfil]
+            ]
+                
+            }
+                
+            )
+            ->get();
+        
+        return $encuestas;
+
     }
 
     public function guarda_informacion($datos)
     {
         
         $encuestas = new Encuesta();
-        $encuestas->nombre = $request->nombre;
-        $encuestas->email = $request->correo;
-        $encuestas->edad = $request->edad;
-        $encuestas->sexo = $request->sexo;
-        $encuestas->medio_difucion = $request->difusion;
-        $encuestas->tipo_perfil_id = $request->tipo;
-        $encuestas->empresa_id = $request->sucursal;
+        $encuestas->nombre = $datos['nombre'];
+        $encuestas->email = $datos['correo'];
+        $encuestas->edad = $datos['edad'];
+        $encuestas->sexo = $datos['sexo'];
+        $encuestas->medio_difucion = $datos['difusion'];
+        $encuestas->tipo_perfil_id = $datos['tipo'];
+        $encuestas->empresa_id = $datos['sucursal'];
         $encuestas->save();
+
+        $respuestas = new Respuesta();
+        $respuestas->respuesta1 = $datos['pregunta_1'];
+        $respuestas->respuesta2 = $datos['pregunta_2'];
+        $respuestas->respuesta3 = $datos['pregunta_3'];
+        $respuestas->respuesta4 = $datos['pregunta_4'];
+        $respuestas->respuesta5 = $datos['pregunta_5'];
+        $respuestas->respuesta6 = $datos['pregunta_6'];
+        $respuestas->respuesta7 = $datos['pregunta_7'];
+        $respuestas->respuesta8 = $datos['pregunta_8'];
+        $respuestas->respuesta9 = $datos['pregunta_9'];
+        $respuestas->respuesta10 = $datos['pregunta_10'];
+        $respuestas->user_id = $encuestas->id;
+        $respuestas->save();
+
+        return response()->json($encuestas);
     }
 
     /**

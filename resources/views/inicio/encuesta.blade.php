@@ -243,8 +243,8 @@
         }
 
         .fit-image {
-            width: 100%;
-            object-fit: cover
+            font-size: 10rem;
+            color: #c2d900;
         }
         .series-m{
             padding: 15px 0px;
@@ -714,25 +714,25 @@
                                         <input type="button" name="make_payment" class="next action-button" value="Confirm"/>
                                     </fieldset>
                                 </form>
-                                
-                                <fieldset style="display: none;">
+                                <fieldset id="fin" style="display: none;">
                                     <div class="form-card">
                                         <h2 class="fs-title text-center">Success !</h2> <br><br>
                                         <div class="row justify-content-center">
-                                            <div class="col-3">
-                                                <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                            <div class="col-3 text-center">
+                                                <i class="fa fa-check-circle-o fit-image"></i>
                                             </div>
                                         </div>
                                         <br>
                                         <br>
                                         <div class="row justify-content-center">
                                             <div class="col-7 text-center">
-                                                <h5>You Have Successfully Signed Up</h5>
+                                                <strong><h4 id="gracias_nombre" class="text-capitalize"></h4></strong>
+                                                <h5 class="m-3">Muchas graciaspor tomar el tiempo de llenar esta breve encuesta.</h5>
+                                                <button type="button" class="action-button" onClick="window.location.reload(true);">Continuar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </fieldset>
-
                             </div>
                         </div>
                     </div>

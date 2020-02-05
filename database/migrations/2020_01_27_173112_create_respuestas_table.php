@@ -15,16 +15,19 @@ class CreateRespuestasTable extends Migration
     {
         Schema::create('respuestas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('respuesta1');
-            $table->integer('respuesta2');
-            $table->integer('respuesta3');
-            $table->integer('respuesta4');
-            $table->integer('respuesta5');
-            $table->integer('respuesta6');
-            $table->integer('respuesta7');
-            $table->integer('respuesta8');
-            $table->integer('respuesta9');
-            $table->string('respuesta10', 500);
+            $table->string('respuesta1', 2);
+            $table->string('respuesta2', 2);
+            $table->string('respuesta3', 2);
+            $table->string('respuesta4', 2);
+            $table->string('respuesta5', 2);
+            $table->string('respuesta6', 2);
+            $table->string('respuesta7', 2);
+            $table->string('respuesta8', 2);
+            $table->string('respuesta9', 2);
+            $table->string('respuesta10', 200);
+            
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('encuestas')->onDelete('cascade');
             $table->timestamps();
         });
     }
