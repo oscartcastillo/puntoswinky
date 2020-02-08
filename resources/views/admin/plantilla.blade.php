@@ -22,12 +22,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('footable/css/footable.bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
 
-    <!--<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/layers.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/navigation.css') }}">-->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.min.css">
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> 
-    <!-- <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>-->
 
 </head>
 <body class="app sidebar-mini rtl">
@@ -331,7 +327,7 @@
 
         @case('/reportes')
             <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
-            <script type="text/javascript" src="{{ asset('js/reportes2.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('js/reportes.js')}}"></script>
             @break
 
         @case('/perfil')
@@ -339,28 +335,11 @@
             @break
 
         @case('/encuestas')
-            <script type="text/javascript" src="{{ asset('js/jquery.tableToExcel.js') }} "></script>
             <script type="text/javascript" src="{{ asset('js/encuesta.js')}}"></script>
             @break
 
         @case('/menu')
-
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js'></script>
-            <script src='https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js'></script>
-
-            <!--<script src="{{ asset('js/plugins.js')}}"></script>
-            <script src="{{ asset('js/functions.js')}}"></script>
-
-            <script src="{{ asset('js/include/jquery.themepunch.tools.min.js')}}"></script>
-            <script src="{{ asset('js/include/jquery.themepunch.revolution.min.js')}}"></script>
-
-            <script src="{{ asset('js/include/extensions/revolution.extension.carousel.min.js')}}"></script>
-            <script src="{{ asset('js/include/extensions/revolution.extension.actions.min.js')}}"></script>
-            <script src="{{ asset('js/include/extensions/revolution.extension.layeranimation.min.js')}}"></script>
-            <script src="{{ asset('js/include/extensions/revolution.extension.navigation.min.js')}}"></script>-->
-            
-            <script type="text/javascript" src="{{ asset('js/menu.js')}}"></script>
-
+            <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
             @break
     
         @default
