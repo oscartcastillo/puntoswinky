@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Exports\EncuestaExport;
 use Carbon\Carbon;
 
 use App\Empresa;
@@ -14,6 +15,7 @@ use App\Respuesta;
 
 use Response;
 use Validator;
+use Excel;
 
 class EncuestaController extends Controller
 {
@@ -55,7 +57,6 @@ class EncuestaController extends Controller
     public function index()
     {
         if(Auth::check()){
-            
             $tipo_perfiles = TipoPerfil::where('tipo_perfil_nombre', '!=', 'Personal')->get();
             $empresas = Empresa::all();
             return view('admin.encuesta_reporte', compact('tipo_perfiles', 'empresas'));
@@ -119,26 +120,105 @@ class EncuestaController extends Controller
 
     public function genera_reporte($datos)
     {
-        $fecha1 = $datos['fecha1'];
-        $fecha2 = $datos['fecha2'];
-        
-        $perfil = ($datos['perfil'] != '') ? $datos['perfil'] : ['2','3','4','5','6'];
-        $edad = $datos['edad'];
-        $sucursal = $datos['sucursal'];
-        $horas = $datos['horas'];
-        
+
+        $fecha1 = $datos['fecha1']. " 00:00:00";
+        $fecha2 = $datos['fecha2']. " 23:59:59";
+
+        $perfil   = (empty($datos['perfil'])) ? 'T' : $datos['perfil'];
+        $edad     = (empty($datos['edad'])) ? 'T' : $datos['edad'];
+        $sucursal = (empty($datos['sucursal'])) ? 'T' : $datos['sucursal'];
+        $horas    = (empty($datos['horas'])) ? 'T' : $datos['horas'];
+
         $respuesta  = Encuesta::join('respuestas', 'respuestas.user_id','=','encuestas.id')
-            ->whereBetween($fecha1, $fecha2)
-            ->whereIn([
-                ['encuestas.tipo_perfil_id', $perfil]
-            ]
-                
-            }
-                
-            )
+            ->whereBetween('encuestas.created_at', [$fecha1, $fecha2])
+            ->where(function($query) use ($perfil, $edad, $sucursal, $horas){
+                    if($perfil == 'T'){
+                        $query = $query->whereIn('encuestas.tipo_perfil_id', ['2','3','4','5','6']);
+                    }
+                    else{
+                        $query = $query->where('encuestas.tipo_perfil_id', $perfil);
+                    }
+
+                    if($edad == 'T'){
+                        $query = $query->whereIn('encuestas.edad', ['1','2','3']);
+                    }
+                    else{
+                        $query = $query->where('encuestas.edad', $edad);
+                    }
+
+                    if($sucursal == 'T'){
+                        $query = $query->where('encuestas.empresa_id', '!=', '');
+                    }
+                    else{
+                        $query = $query->where('encuestas.empresa_id', $sucursal);
+                    }
+
+                    if($horas == 'T'){
+                        $query = $query->whereIn('respuestas.respuesta7', ['A','B','C','D']);
+                    }
+                    else{
+                        $query = $query->where('respuestas.respuesta7', $horas);
+                    }
+                })
             ->get();
+
+        if(count($respuesta) < 1){
+
+            $datos = array(
+                'respuesta' => 'No hay datos'
+            );
+            return $datos;
+        }
+
+        $datos = [
+            'respuesta1' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta2' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta3' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta4' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta5' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta6' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta7' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta8' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'respuesta9' => array( 'A' => 0,'B' => 0,'C' => 0,'D' => 0),
+            'total' => count($respuesta)
+        ];
+
+        $platillos = [];
+
+        foreach ($respuesta as $res)
+        {
+            for($i=0; $i < 10;  $i++){
+
+                switch ($res['respuesta'.$i]) {
+                    case 'A':
+                        $datos['respuesta'.$i]['A'] = $datos['respuesta'.$i]['A'] + 1;
+                    break;
+                    case 'B':
+                        $datos['respuesta'.$i]['B'] = $datos['respuesta'.$i]['B'] + 1;
+                    break;
+                    case 'C':
+                        $datos['respuesta'.$i]['C'] = $datos['respuesta'.$i]['C'] + 1;
+                    break;
+                    case 'D':
+                        $datos['respuesta'.$i]['D'] = $datos['respuesta'.$i]['D'] + 1;
+                    break;
+                }
+            }
+            array_push($platillos, $res['respuesta10']);
+        }
+
+        $datos['platillos'] = $platillos;
+
+        return $datos;
+
+    }
+
+    public function export_table(Request $request){
+
+        $datos = Input::all();
+        $respuesta = $this->genera_reporte($datos);
         
-        return $encuestas;
+        return Excel::download(new EncuestaExport($respuesta), 'Reporte Encuesta.xlsx');
 
     }
 

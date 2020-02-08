@@ -24,7 +24,7 @@ class CreateRespuestasTable extends Migration
             $table->string('respuesta7', 2);
             $table->string('respuesta8', 2);
             $table->string('respuesta9', 2);
-            $table->string('respuesta10', 200);
+            //$table->string('respuesta10', 200);
             
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('encuestas')->onDelete('cascade');

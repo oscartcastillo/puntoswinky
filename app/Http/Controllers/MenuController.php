@@ -13,7 +13,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return "llegamos aqui";
+        return view('admin.menu');
     }
 
     /**

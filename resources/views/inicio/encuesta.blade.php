@@ -390,25 +390,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-12 col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_1" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-12 col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input  type="radio" name="pregunta_1" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-12 col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_1" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-12 col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_1" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>
@@ -424,25 +424,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_2" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_2" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_2" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_2" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>
@@ -458,25 +458,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_3" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_3" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_3" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_3" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>
@@ -492,25 +492,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_4" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_4" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_4" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_4" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>
@@ -526,25 +526,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_5" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_5" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_5" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_5" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>
@@ -560,25 +560,25 @@
                                                 <div class="col-md-6">
                                                     <div class="row respues-m">
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_6" value="A" class="radius">
                                                                 <h6 class="d-block d-lg-none">Excelente</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_6" value="B" class="radius">
                                                                 <h6 class="d-block d-lg-none">Bueno</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_6" value="C" class="radius">
                                                                 <h6 class="d-block d-lg-none">Regular</h6>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-3 text-center">
-                                                            <label class="radios">
+                                                            <label class="radios d-lg-block">
                                                                 <input type="radio" name="pregunta_6" value="D" class="radius">
                                                                 <h6 class="d-block d-lg-none">Malo</h6>
                                                             </label>

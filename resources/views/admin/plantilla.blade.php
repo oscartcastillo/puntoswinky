@@ -22,7 +22,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('footable/css/footable.bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
 
-    <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <!--<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/layers.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/navigation.css') }}">-->
+    <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> 
+    <!-- <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>-->
 
 </head>
 <body class="app sidebar-mini rtl">
@@ -333,8 +338,29 @@
             <script type="text/javascript" src="{{ asset('js/perfil.js')}}"></script>
             @break
 
-        @case('/encuesta')
+        @case('/encuestas')
+            <script type="text/javascript" src="{{ asset('js/jquery.tableToExcel.js') }} "></script>
             <script type="text/javascript" src="{{ asset('js/encuesta.js')}}"></script>
+            @break
+
+        @case('/menu')
+
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js'></script>
+            <script src='https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js'></script>
+
+            <!--<script src="{{ asset('js/plugins.js')}}"></script>
+            <script src="{{ asset('js/functions.js')}}"></script>
+
+            <script src="{{ asset('js/include/jquery.themepunch.tools.min.js')}}"></script>
+            <script src="{{ asset('js/include/jquery.themepunch.revolution.min.js')}}"></script>
+
+            <script src="{{ asset('js/include/extensions/revolution.extension.carousel.min.js')}}"></script>
+            <script src="{{ asset('js/include/extensions/revolution.extension.actions.min.js')}}"></script>
+            <script src="{{ asset('js/include/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+            <script src="{{ asset('js/include/extensions/revolution.extension.navigation.min.js')}}"></script>-->
+            
+            <script type="text/javascript" src="{{ asset('js/menu.js')}}"></script>
+
             @break
     
         @default

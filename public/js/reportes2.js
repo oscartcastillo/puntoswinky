@@ -236,7 +236,7 @@ function procesa_datos(data){
             data
         },
         success: function(data) {
-            var titulo, contenido;   
+            var titulo, contenido;
             $.each(data.thead, function (ind, elem) { 
                 titulo += '<td>'+elem+'</td>'; 
             }); 

@@ -260,13 +260,11 @@ $(document).ready(function(){
     });
 
     $("#encuesta").on("change",function(){
+
         ocultar();
+        
         var fecha1 = $('#fecha1').val();
         var fecha2 = $('#fecha2').val();
-        var perfil = $('#tipo_perfil').val();
-        var edad = $('#edad').val();
-        var sucursal = $('#sucursal').val();
-        var horas = $('#horas').val();
         
         if (fecha1 == '') {
             $('.errorFecha1').show();
@@ -275,25 +273,105 @@ $(document).ready(function(){
             $('.errorFecha2').show();
         }
 
-        if (fecha1 =! '' && fecha1 != '') {
+        $('.exportToExcel').attr('disabled', true);
 
+        if (fecha1 != '' && fecha2 != '') {
+
+            $('.exportToExcel').attr('disabled', false);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 type:'POST',
                 url: 'encuestas',
-                dataType: 'json',
                 data : {
                     'operation' : 'Auth',
-                    'fecha1' : fecha1,
-                    'fecha2' : fecha2,
-                    'perfil' : perfil,
-                    'edad' : edad,
-                    'sucursal' : sucursal,
-                    'horas' : horas
+                    'fecha1' : $('#fecha1').val() ,
+                    'fecha2' : $('#fecha2').val(),
+                    'perfil' : $('#tipo_perfil').val(),
+                    'edad' : $('#edad').val(),
+                    'sucursal' : $('#sucursal').val(),
+                    'horas' : $('#horas').val()
                 },
+                dataType: 'json',
                 success:function(data){
-                    console.log(data);
+                    
+                    $('#personas').text('');
+                    $('#pregunta1,#pregunta2,#pregunta3,#pregunta4,#pregunta5,#pregunta6,#pregunta7,#pregunta8,#pregunta9').empty();
+                    $('.p1,.p2,.p3,.p4,.p5,.p6,.p7,.p8,.p9').empty();
+                    $('#lista-opciones').empty();
+                    
+                    if (data.respuesta) {
+                        $('#personas').text(0);
+                    }
+                    else{
+                        $('#personas').text(data.total);
+                        
+                        var num_personas = data.total,
+                            comienzo = 1,
+                            nombre = "#pregunta",
+                            resultado = '', 
+                            cadena = '',
+                            listado = '';
+                        
+                        jQuery.each(data, function(i, val){
+                            
+                            if(typeof val === "object"){
+                                cadena = '', inicio = 0;
+                                
+                                $.each(val, function (ind, elem) {
+                                    resultado = 0;
+                                    resultado = ((elem * 100) / num_personas).toFixed(2);
+                                    var clase = '';
+                                    cadena += '<div class="progress-bar '+clase+'" role="progressbar" style="width: '+resultado+'%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">'+elem+' = '+resultado+' % </div>';
+                                    inicio++;
+                                });
+
+                                $(nombre+comienzo).append(cadena);
+                            }
+                            comienzo++;
+                        });
+
+
+                        jQuery.each(data.platillos, function(index, platillo) {
+                            listado += '<li class="list-group-item">'+platillo+'</li>';
+                        });
+
+                        $('#lista-opciones').append(listado);
+                    }
                 }
-            });   
+            });
         }
     });
+    
+    $('.exportToExcel').click(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:'GET',
+            url: 'encuestas_export',
+            data : {
+                'fecha1' : $('#fecha1').val() ,
+                'fecha2' : $('#fecha2').val(),
+                'perfil' : $('#tipo_perfil').val(),
+                'edad' : $('#edad').val(),
+                'sucursal' : $('#sucursal').val(),
+                'horas' : $('#horas').val()
+            },
+            dataType: 'json',
+            success:function(data){
+
+            }
+        });
+    });
+
 });
+
+
+

@@ -70,6 +70,9 @@ Route::post('reset_pass', 'PerfilController@pass')->name('reset_pass');
 
 Route::get('genera_reporte', 'ReportesController@genera_reporte')->name('genera_reporte');
 
+
+Route::get('encuestas_export', 'EncuestaController@export_table')->name('encuestas_export');
+
 //Route::get('encuesta_reporte', 'ReportesController@encuesta')->name('encuesta_reporte');
 //Route::post('respuesta_encuesta', 'ReportesController@respuesta_encuesta')->name('respuesta_encuesta');
 

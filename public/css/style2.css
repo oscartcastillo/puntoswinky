@@ -1,0 +1,132 @@
+*{
+  color: #836585;
+  font-family: 'Poppins';
+}
+html, body {
+    height: 100%;
+    background-image:url(../img/login.png), linear-gradient(rgba(77, 39, 112, 1) 0%, rgb(52, 10, 58) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.form-body, .form-holder{
+    height: 100%;
+}
+.form-holder{
+    width: 100%;
+}
+.form-content{
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100%;
+    background-size: cover;
+}
+.form-items {
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    background-color: #290339d9;
+}
+.form-items a{
+  margin-left: 0px;
+  color: #836585;
+  font-size: 16px;
+}
+.info p{
+    margin-bottom: 0;
+}
+.info h3{
+    font-weight: 900;
+}
+.info, .page-links, form{
+  margin-bottom: 50px;
+}
+.logo{
+    margin-bottom: 150px;
+}
+.page-links a{
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.55);
+    text-decoration: none;
+}
+.page-links a:hover{
+    color: #000;
+}
+.page-links a.active{
+    border-bottom: 1px solid;
+    color: #000;
+}
+.form-control{
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    background-color: transparent;
+    color: #cac900;
+    padding: 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.form-control::placeholder {
+    color: #cac900;
+    opacity: 1;
+}
+.form-control:focus{
+  color: #cac900;
+    outline: 0;
+    border-color: #cac900;
+    box-shadow: none;
+    background-color: transparent!important;
+}
+.form-control::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.51);
+}
+.other-links{
+    font-size: 12px;
+}
+.other-links a{
+    margin-right: 10px;
+}
+.ingresa{
+  border-radius: 10px;
+  background-color: #cac900;
+  color: #300e40;
+  padding: 3px 20px;
+}
+.sociales{
+  margin-bottom: -25%;
+  display: flex;
+  padding: 0 15%;
+}
+i{
+  color: white;
+  font-size: 20px;
+}
+@media (max-width:450px){
+    .logo{
+      margin-bottom: 0px;
+    }
+    .info h3{
+        font-size: 20px;
+    }
+    .info p{
+        font-size: 12px;
+    }
+    .form-content .form-items{
+        max-width: 300px;
+    }
+    .form-button .btn {
+        margin-right: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .sociales{
+      margin-bottom: -50%;
+    }
+}
