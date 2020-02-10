@@ -50,7 +50,39 @@
                         <h5>Correo: {{ Auth::user()->email }}</h5>
                         <h5>Categoria: <span class="text-capitalize"> {{ Auth::user()->perfil->clasificacion->clasificacion_nombre }}</span></span></h5>
                     </div>
-                    <a class="btn btn-regalos"><img src="{{asset('img/gift.png')}}" alt="">   Catalogo de Premios  </a>
+
+                    <button type="button" class="btn btn-regalos" data-toggle="modal" data-target="#modal_regalos"><img src="{{asset('img/gift.png')}}" alt="" style="margin: 0px 5%">Catalogo de Premios</button>
+
+                    <div class="modal fade" id="modal_regalos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Lista de Premios</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        @if (is_array($premios) || is_object($premios))
+                                            @foreach($premios as $premio)
+                                                <div class="col-md-4 col-premio">
+                                                    <div class="repo text-center">
+                                                        <h4>{{ $premio->premio_nombre }}</h4>
+                                                        <img class="img-fluid premio" src="./uploads/{{ $premio->premio_imagen }}" alt="">
+                                                        <div class="info_regalo text-center">
+                                                            <h6>{{ $premio->premio_descripcion }}</h6>
+                                                            <h6>{{ $premio->premio_precio }} puntos </h6s>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-12 col-xl-9">
                     <h5 class="title-table">Detalles</h5>

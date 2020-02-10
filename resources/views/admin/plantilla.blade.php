@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('footable/css/footable.bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
 
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.min.css"> -->
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> 
 
 </head>
@@ -263,7 +263,9 @@
 
         @case('/inicio')
             <script type="text/javascript" src="{{ asset('js/plugins/chart.js')}}"></script>
-            <script type="text/javascript" src="{{ asset('js/grafica.js')}}"></script>
+            {{-- <script type="text/javascript" src="{{ asset('js/grafica.js')}}"></script> --}}
+
+            <script type="text/javascript" src="{{ asset('js/inicio.js')}}"></script>
             <script type="text/javascript">
                 jQuery(function($){
                     $('.table').footable({
@@ -339,7 +341,7 @@
             @break
 
         @case('/menu')
-            <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
+            <script type="text/javascript" src="{{ asset('js/flickity.js')}}"></script>
             @break
     
         @default

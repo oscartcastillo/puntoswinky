@@ -21,6 +21,7 @@ use PDF;
 use Excel;
 
 use App\User;
+use App\Premio;
 use App\Perfil;
 use App\Ciudad;
 use App\Empresa;
@@ -69,7 +70,12 @@ class UsuariosController extends Controller
             $datos = Transaccion::where('user_id', '=', Auth()->user()->id)
                 ->get();
 
-            return view('admin/inicio', compact('puntos', 'datos'));
+            $premios = Premio::where([
+                ['clasificacion_id', '=', Auth::User()->perfil->clasificacion_id],
+                ['premio_stock', '>', 0],
+            ])->get();
+
+            return view('admin/inicio', compact('puntos', 'datos', 'premios'));
         }
         else{
             

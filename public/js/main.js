@@ -93,39 +93,6 @@ function actualiza_td(){
 		}
 	});
 
-	/*$(".user-img").each(function(index) {
-		
-		var url = location.origin;
-		
-		if ($(this).hasClass('avatar-0')) {
-			$(this).attr('src', url+'/img/avatar-0.png');
-		}
-		if ($(this).hasClass('avatar-1')) {
-			$(this).attr('src', url+'/img/avatar-1.png');
-		}
-		if ($(this).hasClass('avatar-2')) {
-			$(this).attr('src', url+'/img/avatar-2.png');
-		}
-		if ($(this).hasClass('avatar-3')) {
-			$(this).attr('src', url+'/img/avatar-3.png');
-		}
-		if ($(this).hasClass('avatar-4')) {
-			$(this).attr('src', url+'/img/avatar-4.png');
-		}
-		if ($(this).hasClass('avatar-5')) {
-			$(this).attr('src', url+'/img/avatar-5.png');
-		}
-		if ($(this).hasClass('avatar-6')) {
-			$(this).attr('src', url+'/img/avatar-6.png');
-		}
-		if ($(this).hasClass('avatar-7')) {
-			$(this).attr('src', url+'/img/avatar-7.png');
-		}
-		if ($(this).hasClass('avatar-8')) {
-			$(this).attr('src', url+'/img/avatar-8.png');
-		}
-	});*/
-
 	$(".tarjeta").each(function(index) {
 		var input = $(this).hasClass( "form-control");
 		if (input) {
