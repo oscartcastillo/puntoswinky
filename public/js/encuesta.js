@@ -301,13 +301,16 @@ $(document).ready(function(){
                     
                     $('#personas').text('');
                     $('#pregunta1,#pregunta2,#pregunta3,#pregunta4,#pregunta5,#pregunta6,#pregunta7,#pregunta8,#pregunta9').empty();
-                    $('.p1,.p2,.p3,.p4,.p5,.p6,.p7,.p8,.p9').empty();
+                    $('#v-1,#v-2,#v-3,#v-4,#v-5,#v-6,#v-7').empty();
+                    $('.reset-repor').text('');
+
                     $('#lista-opciones').empty();
                     
                     if (data.respuesta) {
                         $('#personas').text(0);
                     }
                     else{
+                        
                         $('#personas').text(data.total);
                         
                         var num_personas = data.total,
@@ -315,19 +318,30 @@ $(document).ready(function(){
                             nombre = "#pregunta",
                             resultado = '', 
                             cadena = '',
-                            listado = '';
+                            listado = '',
+                            plati = '';
+
+                            $('#v-1').text(num_personas);
+                            $('#v-2').text($('#fecha1').val());
+                            $('#v-3').text($('#fecha2').val());
+                            $('#v-4').text($('select[name="sucursal"] option:selected').text());
+                            $('#v-5').text($('select[name="horas"] option:selected').text());
+                            $('#v-6').text($('select[name="tipo_perfil"] option:selected').text());
+                            $('#v-7').text($('select[name="edad"] option:selected').text());
                         
                         jQuery.each(data, function(i, val){
                             
                             if(typeof val === "object"){
-                                cadena = '', inicio = 0;
+                                cadena = '', inicio = 0, inicio2 = 2;
                                 
                                 $.each(val, function (ind, elem) {
                                     resultado = 0;
                                     resultado = ((elem * 100) / num_personas).toFixed(2);
                                     var clase = '';
+                                    $(".p"+comienzo+"-"+inicio2).text(elem + " = " +resultado +"%"); 
                                     cadena += '<div class="progress-bar '+clase+'" role="progressbar" style="width: '+resultado+'%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">'+elem+' = '+resultado+' % </div>';
                                     inicio++;
+                                    inicio2++;
                                 });
 
                                 $(nombre+comienzo).append(cadena);
@@ -337,8 +351,12 @@ $(document).ready(function(){
 
 
                         jQuery.each(data.platillos, function(index, platillo) {
+
                             listado += '<li class="list-group-item">'+platillo+'</li>';
+                            plati += platillo +" , ";
                         });
+
+                        $('.p10').text(plati);
 
                         $('#lista-opciones').append(listado);
                     }
@@ -346,29 +364,24 @@ $(document).ready(function(){
             });
         }
     });
-    
-    $('.exportToExcel').click(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type:'GET',
-            url: 'encuestas_export',
-            data : {
-                'fecha1' : $('#fecha1').val() ,
-                'fecha2' : $('#fecha2').val(),
-                'perfil' : $('#tipo_perfil').val(),
-                'edad' : $('#edad').val(),
-                'sucursal' : $('#sucursal').val(),
-                'horas' : $('#horas').val()
-            },
-            dataType: 'json',
-            success:function(data){
 
+    $(function() {
+        $(".exportToExcel").click(function(e){
+            var table = $('#reporte_excel');
+            if(table && table.length){
+                $(table).table2excel({
+                    exclude: ".noExl",
+                    name: "Excel Document Name",
+                    filename : "Reporte Excel.xls",
+                    fileext: ".xls",
+                    exclude_img: true,
+                    exclude_links: true,
+                    exclude_inputs: true,
+                    preserveColors: true
+                });
             }
         });
+        
     });
 
 });

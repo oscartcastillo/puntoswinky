@@ -29,10 +29,22 @@ function actualiza_td(){
 		}
 	});
 
-	$("td:contains(B)").css({
+	/*$("td:contains(B)").css({
 		'color': 'red',
 		'font-weight': '700',
+	});*/
+
+	$(".estatus_general").each(function(index) {
+		
+		if ($(this).text() == 'B') {
+			
+			$(this).css({
+				'color': 'red',
+				'font-weight': '700',
+			});
+		}
 	});
+
 
 	$(".times-t").each(function(index) {
 		var si = CheckDate($(this).text())

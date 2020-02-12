@@ -39,6 +39,14 @@
 			background-color: rgba(255, 255, 255, 0.05);
 		}
 	</style>
+	<script>
+		var empresa_nombre = "{{ Auth::User()->perfil->empresa->empresa_nombre }}";
+		var empresa_direccion = "{{ Auth::User()->perfil->empresa->empresa_ubicacion }}";
+		var empresa_cp = "{{ Auth::User()->perfil->empresa->empresa_cp }}";
+		var empresa_numero = "{{ Auth::User()->perfil->empresa->empresa_numero }}";
+		var ciudad = "{{ Auth::User()->perfil->ciudad->ciudad_nombre }}";
+	</script>
+
 		<main class="app-content">
 			<div class="app-title">
 				<div>

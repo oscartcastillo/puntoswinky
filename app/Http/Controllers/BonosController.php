@@ -125,7 +125,16 @@ class BonosController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $fecha_ultima = Bono::selectRaw("DATE_FORMAT(bono_fin,'%d-%m-%Y') as fin")
+        ->where([
+            ['user_id', $id],
+            ['bono_estatus', 'activo']
+        ])
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+        return $fecha_ultima;
     }
 
     /**

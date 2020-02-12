@@ -69,7 +69,7 @@ function exportar(){
 									},
 									{
 										alignment: 'left',
-										text: 'Winky Coffee' + '\n' + 'Dirección : 3 sur 5758 El cerrito' + '\n' + 'Puebla Puebla MEXICO' + '\n' + 'Teléfono: 2140601' + '\n' + 'Fecha : ' + $('#reporte_fecha').text(),
+										text: empresa_nombre + '\n' + 'Dirección : '+empresa_direccion+'\n' + ciudad +' Puebla MEXICO' + '\n' + 'Teléfono: '+ empresa_numero + '\n' + 'Fecha : ' + $('#reporte_fecha').text(),
 										fontSize: 12,
 										margin: [0,0]
 									},

@@ -4,7 +4,7 @@
 		<main class="app-content">
 			<div class="app-title">
 				<div>
-					<h1>Menu</h1>
+					<h1>Menú</h1>
 				</div>
 			</div>
 			<div class="carousel-wrapper" style="background-image: url('./img/login.png');">

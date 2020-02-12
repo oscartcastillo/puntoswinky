@@ -24,8 +24,8 @@
 					</div>
 					<div class="form-group">
 						<label for="tipo_perfil">Tipo de Perfil :</label>
-						<select id="tipo_perfil" class="custom-select">
-							<option value=''>Tipo Perfil</option>
+						<select id="tipo_perfil" class="custom-select" name="tipo_perfil">
+							<option value=''>Todos</option>
 							@foreach ($tipo_perfiles as $perfil)
 								<option value="{{$perfil->id}}">{{$perfil->tipo_perfil_nombre}}</option>
 							@endforeach
@@ -33,8 +33,8 @@
 					</div>
 					<div class="form-group">
 						<label for="edad">Edad :</label>
-						<select id="edad" class="custom-select">
-							<option value="">Edad</option>
+						<select id="edad" class="custom-select" name="edad">
+							<option value="">Todos</option>
 							<option value="1">Menor de 29 años</option>
 							<option value="2">De 30 a 40 años</option>
 							<option value="3">Mayor de 40 años</option>
@@ -42,8 +42,8 @@
 					</div>
 					<div class="form-group">
 						<label for="sucursal">Sucursal :</label>
-						<select id="sucursal" class="custom-select">
-							<option value="">Sucursal</option>
+						<select id="sucursal" class="custom-select" name="sucursal">
+							<option value="">Todos</option>
 							@foreach ($empresas as $empresa)
 								<option value="{{$empresa->id}}">{{$empresa->empresa_nombre}}</option>
 							@endforeach
@@ -51,15 +51,15 @@
 					</div>
 					<div class="form-group">
 						<label for="horas">Horas :</label>
-						<select id="horas" class="custom-select">
-							<option value=''> Selecione Horas </option>
+						<select id="horas" class="custom-select" name="horas">
+							<option value=''>Todos</option>
 							<option value='A'>08:00-11:00 hrs</option>
 							<option value='B'>11:00-14:00 hrs</option>
 							<option value='C'>14:00-17:00 hrs</option>
 							<option value='D'>17:00-20:00 hrs</option>
 						</select>
 					</div>
-					<!--<button class="btn btn-primary exportToExcel" disabled="disabled">Exportar</button>-->
+					<button id="generate-excel" class="btn btn-primary exportToExcel" disabled="disabled">Exportar</button>
 				</div>
 				<style>
 					.progress-bar{
@@ -140,6 +140,7 @@
 					.etiquetas h6{
 						padding: 2px;
 					}
+
 
 				</style>
 				<div class="col-12 col-lg-10 text-center p-3" style="background-color: white;">
@@ -295,63 +296,163 @@
 									</tbody>
 								</table>
 
-								<!--<table>
+								<style>
+									#reporte_excel {
+										display: none;
+									}
+								</style>
+								<table border="1" id="reporte_excel">
 									<thead>	
+										<tr class="text-right">
+											<th colspan="5" class="fecha-t" align="right">{{ date('m/d/Y') }}</th>
+										</tr>
 										<tr>
-											<td>PREGUNTA</td>
-											<td>EXCELENTE</td>
-											<td>BUENO</td>
-											<td>REGULAR</td>
-											<td>MALO</td>
+											<th colspan="5">Reportes Encuesta Puntos Winky</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="pregunta1">
-											<td>¿En general que tal fue la atención a su servicio?</td>
-										</tr>
-										<tr class="pregunta2">
-											<td>La atención del cajero fue...</td>
-										</tr>
-										<tr class="pregunta3">
-											<td>¿Qué te parecen nuestros precios?</td>
-										</tr>
-										<tr class="pregunta4">
-											<td>¿Cómo calificas el sabor de nuestros platillos?</td>
-										</tr>
-										<tr class="pregunta5">
-											<td>¿Cómo calificas la higiene de nuestros platillos?</td>
-										</tr>
-										<tr class="pregunta7">
-											<td>¿El servicio de internet fue...?</td>
+										<tr>
+											<th>
+												Numero de Personas
+											</th>
+											<th id="v-1">	
+											</th>
+											<th colspan="3"></th>
 										</tr>
 										<tr>
+											<td>Fecha Inicial :</td>
+											<td id="v-2"></td>
+											<td>Fecha Final :</td>
+											<td id="v-3"></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Sucursal :</td>
+											<td id="v-4"></td>
+											<td>Horario :</td>
+											<td id="v-5"></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Tipo cliente :</td>
+											<td id="v-6"></td>
+											<td>Edad :</td>
+											<td id="v-7"></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td colspan="5"></td>
+										</tr>
+										<tr>
+											<td class="text-dark">PREGUNTA</td>
+											<td class="text-dark">EXCELENTE</td>
+											<td class="text-dark">BUENO</td>
+											<td class="text-dark">REGULAR</td>
+											<td class="text-dark">MALO</td>
+										</tr>
+										<tr class="p1">
+											<td>¿En general que tal fue la atención a su servicio?</td>
+											<td class="p1-2 reset-repor"></td>
+											<td class="p1-3 reset-repor"></td>
+											<td class="p1-4 reset-repor"></td>
+											<td class="p1-5 reset-repor"></td>
+										</tr>
+										<tr class="p2">
+											<td>La atención del cajero fue...</td>
+											<td class="p2-2 reset-repor"></td>
+											<td class="p2-3 reset-repor"></td>
+											<td class="p2-4 reset-repor"></td>
+											<td class="p2-5 reset-repor"></td>
+										</tr>
+										<tr class="p3">
+											<td>¿Qué te parecen nuestros precios?</td>
+											<td class="p3-2 reset-repor"></td>
+											<td class="p3-3 reset-repor"></td>
+											<td class="p3-4 reset-repor"></td>
+											<td class="p3-5 reset-repor"></td>
+										</tr>
+										<tr class="p4">
+											<td>¿Cómo calificas el sabor de nuestros platillos?</td>
+											<td class="p4-2 reset-repor"></td>
+											<td class="p4-3 reset-repor"></td>
+											<td class="p4-4 reset-repor"></td>
+											<td class="p4-5 reset-repor"></td>
+										</tr>
+										<tr class="p5">
+											<td>¿Cómo calificas la higiene de nuestros platillos?</td>
+											<td class="p5-2 reset-repor"></td>
+											<td class="p5-3 reset-repor"></td>
+											<td class="p5-4 reset-repor"></td>
+											<td class="p5-5 reset-repor"></td>
+										</tr>
+										<tr class="p7">
+											<td>¿El servicio de internet fue...?</td>
+											<td class="p7-2 reset-repor"></td>
+											<td class="p7-3 reset-repor"></td>
+											<td class="p7-4 reset-repor"></td>
+											<td class="p7-5 reset-repor"></td>
+										</tr>
+										<tr>
+											<td colspan="5 reset-repor"></td>
+										</tr>
+										<tr>
+											<td>PREGUNTA</td>
 											<td>SI</td>
 											<td>NO</td>
 											<td>TAL VEZ</td>
+											<td></td>
 										</tr>
-										<tr class="pregunta6">
+										<tr class="p6">
 											<td>¿Nos recomendarías?</td>
+											<td class="p6-2 reset-repor"></td>
+											<td class="p6-3 reset-repor"></td>
+											<td class="p6-4 reset-repor"></td>
+											<td class="p6-5 reset-repor"></td>
 										</tr>
 										<tr>
+											<td colspan="5 reset-repor"></td>
+										</tr>
+										<tr>
+											<td>PREGUNTA</td>
 											<td>08:00-11:00</td>
 											<td>11:00-14:00</td>
 											<td>14:00-17:00</td>
 											<td>17:00-20:00</td>
 										</tr>
-										<tr class="pregunta8">
+										<tr class="p8">
 											<td>Tu servicio fue entre las...</td>
+											<td class="p8-2 reset-repor"></td>
+											<td class="p8-3 reset-repor"></td>
+											<td class="p8-4 reset-repor"></td>
+											<td class="p8-5 reset-repor"></td>
 										</tr>
 										<tr>
+											<td colspan="5 reset-repor"></td>
+										</tr>
+										<tr>
+											<td>PREGUNTA</td>
 											<td>5-10 min</td>
 											<td>10-15 min</td>
 											<td>15-20 min</td>
 											<td>20 o mas min</td>
 										</tr>
-										<tr class="pregunta9">
+										<tr class="p9">
 											<td>¿Cuánto tardó tu servicio?</td>
+											<td class="p9-2 reset-repor"></td>
+											<td class="p9-3 reset-repor"></td>
+											<td class="p9-4 reset-repor"></td>
+											<td class="p9-5 reset-repor"></td>
+										</tr>
+										<tr>
+											<td colspan="5"></td>
+										</tr>
+										<tr>
+											<th>Platillos Sugeridos</th>
+											<td class="p10 reset-repor" colspan="4">
+											</td>
 										</tr>
 									</tbody>
-								</table>-->
+								</table>
 							</div>
 						</div>
 						<div class="col-12 col-lg-3">
@@ -368,7 +469,6 @@
 							<h6 style="padding: 18px;">Plantillos Sugeridos</h6>
 							<ul class="list-group" id="lista-opciones">
 							</ul>
-
 							<div class="form-group">
 								<h4>TOTAL DE PERSONAS ENCUESTADAS</h4>
 								<strong><span id="personas"></span></strong>

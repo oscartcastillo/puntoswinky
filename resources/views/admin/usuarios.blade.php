@@ -17,7 +17,7 @@
                             <a class="btn btn-primary" href="{{ URL::to('/export_pdf') }}">Exportar Listado del Personal a PDF</a>
                             <a class="btn btn-primary" href="{{ URL::to('/export_excel') }}">Exportar Listado del Personal a EXCEL</a>
                         </p>
-                        <table id="postTable" class="table table-hover table-bordered table-dark" data-show-toggle="true">
+                        <table id="postTable" class="table table-hover table-bordered table-dark" data-show-toggle="true" data-paging-size="10"  data-paging="true">
     						<thead>
     							<tr>
                                     @if (Auth::User()->hasRole('admin') || Auth::User()->hasRole('super'))
@@ -53,7 +53,7 @@
                                                 <td class="text-lowercase">{{ $user->email }}</td>
                                                 <td class="fecha-t">{{ $user->perfil->perfil_nacimiento }}</td>
                                                 <td class="text-lowercase text-uppercase">{{ $user->perfil->perfil_genero }}</td>
-                                                <td>{{ $user->estatus }}</td>
+                                                <td class="estatus_general">{{ $user->estatus }}</td>
                                                 <td>
                                                     <button class="edit-modal btn btn-info" 
                                                         data-id = "{{$user->id}}" 
@@ -168,14 +168,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="nombre">Nombre :</label>
-                                        <input class="form-control" id="nombre_add" placeholder="Nombre" type="text">
+                                        <input class="form-control" id="nombre_add" placeholder="Nombre" type="text" maxlength="50" minlength="2">
                                         <p class="errorNombre text-center alert alert-danger"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="apellidos">Apellidos :</label>
-                                        <input class="form-control" id="apellidos_add" placeholder="Apellidos" type="text">
+                                        <input class="form-control" id="apellidos_add" placeholder="Apellidos" type="text" maxlength="50" minlength="2">
                                         <p class="errorApellidos text-center alert alert-danger"></p>
                                     </div>
                                 </div>
@@ -278,7 +278,7 @@
                                         <div class="form-group">
                                             <p>Ciudad:</p>
                                             <select id="ciudad_edit" class="custom-select" autofocus>
-                                                <option value="">Ciudad</option>
+                                                <option value="">Ciudad</option> 
                                                 @foreach ($ciudades as $ciudad)
                                                     <option value="{{ $ciudad->id }}">{{ $ciudad->ciudad_nombre }}</option>
                                                 @endforeach
@@ -289,9 +289,9 @@
                                             <p>Sucursal :</p>
                                             <select id="empresa_edit" class="custom-select" autofocus>
                                                 <option value="">Seleccione Sucursal</option>
-                                                @foreach ($empresas as $empresa)
+                                               {{--  @foreach ($empresas as $empresa)
                                                     <option value="{{ $empresa->id }}">{{ $empresa->empresa_nombre }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             <p class="errorEmpresa text-center alert alert-danger"></p>
                                         </div>

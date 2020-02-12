@@ -96,7 +96,7 @@ class ClientesController extends Controller
             //Crear Usuario
             $user = new User();
             $user->name = 'cliente';
-            $user->email = $request->email;
+            $user->email = strtolower($request->email);
             $user->password = Hash::make(Input::get('winkyfan'));
             $user->estatus = $request->estatus;
             $user->puntos_reset = Carbon::now()->format('Y-m-d');
@@ -111,8 +111,8 @@ class ClientesController extends Controller
             
             //Crear Perfil
             $perfil = new Perfil();
-            $perfil->perfil_nombre = $request->nombre;
-            $perfil->perfil_apellidos = $request->apellidos;
+            $perfil->perfil_nombre = strtolower($request->nombre);
+            $perfil->perfil_apellidos = strtolower($request->apellidos);
             $perfil->perfil_tarjeta = $tarjeta_new;
             $perfil->perfil_genero = $request->genero;
             $perfil->perfil_nacimiento = $request->cumpleanos;
@@ -206,8 +206,8 @@ class ClientesController extends Controller
             $user = User::findOrFail($id);
             $user->email = $request->email;
             $user->estatus = $request->estatus;
-            $user->perfil->perfil_nombre = $request->nombre;
-            $user->perfil->perfil_apellidos = $request->apellidos;
+            $user->perfil->perfil_nombre = strtolower($request->nombre);
+            $user->perfil->perfil_apellidos = strtolower($request->apellidos);
             $user->perfil->perfil_tarjeta = $tarjeta_edit;
             $user->perfil->perfil_genero = $request->genero;
             $user->perfil->perfil_nacimiento = $request->cumpleanos;
@@ -237,7 +237,9 @@ class ClientesController extends Controller
 
     public function export_pdf(){
 
-        $clientes = User::whereHas(
+        $clientes = User::select('users.*', DB::raw('(CASE WHEN LENGTH(perfiles.perfil_tarjeta) > 10 then "" ELSE "NoTarjeta" END) AS tarjeta'))
+        ->join('perfiles', 'perfiles.user_id','=','users.id')
+        ->whereHas(
             'roles', function($clie){
                 $clie->where('name', '=', 'cliente');
             }

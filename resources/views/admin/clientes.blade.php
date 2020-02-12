@@ -17,7 +17,7 @@
                             <a class="btn btn-primary" href="{{ URL::to('clientes_export_pdf') }}">Export PDF</a>
                             <a class="btn btn-primary" href="{{ URL::to('clientes_export_excel') }}">Export EXCEL</a>
                         </p>
-                        <table id="postTable" class="table table-hover table-bordered table-dark" data-show-toggle="true">
+                        <table id="postTable" class="table table-hover table-bordered table-dark" data-show-toggle="true" data-paging-size="10"  data-paging="true">
     						<thead>
     							<tr>
                                     <th>No. Tarjeta</th>
@@ -34,10 +34,10 @@
                                     @foreach($clientes as $user)
                                         <tr class="item{{$user->id}}">
                                         	<td class="tarjeta">{{ $user->perfil->perfil_tarjeta }}</td>
-                                            <td style="text-transform: capitalize;">{{ $user->perfil->full_name}}</td>
+                                            <td style="text-transform: capitalize;" class="text-white">{{ $user->perfil->full_name}}</td>
                                             <td>{{ $user->email}}</td>
                                             <td class="fecha-t">{{ $user->perfil->perfil_nacimiento }}</td>
-                                            <td>{{ $user->estatus }}</td>
+                                            <td class="estatus_general">{{ $user->estatus }}</td>
                                             <td>
                                                 <button class="show-modal btn btn-success"
                                                     data-telefono = "{{ $user->perfil->perfil_celular}}"
@@ -132,7 +132,7 @@
                                             <option value="">Compañia Telefonica</option>
                                             <option value="telcel">Telcel</option>
                                             <option value="movistar">Movistar</option>
-                                            <option value="at&t">AT&T</option>
+                                            <option value="at&t">ATT</option>
                                             <option value="unefon">Unefon</option>
                                             <option value="freedompop">FreedomPop</option>
                                             <option value="virgin">Virgin Mobile</option>
@@ -192,7 +192,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="tarjeta">Tarjeta :</label>
-                                    <input class="form-control tarjeta" id="tarjeta_add" placeholder="No. Tarjeta" type="text" maxlength="10" minlength="10">
+                                    <input class="form-control tarjeta entero" id="tarjeta_add" placeholder="No. Tarjeta" type="text" maxlength="10" minlength="10">
                                     <p class="errorTarjeta text-center alert alert-danger"></p>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                                         <select id="compania_edit" class="custom-select" autofocus style="margin-bottom:5%;">
                                             <option value="telcel">Telcel</option>
                                             <option value="movistar">Movistar</option>
-                                            <option value="at&t">AT&T</option>
+                                            <option value="at&t">ATT</option>
                                             <option value="unefon">Unefon</option>
                                             <option value="freedompop">FreedomPop</option>
                                             <option value="virgin">Virgin Mobile</option>

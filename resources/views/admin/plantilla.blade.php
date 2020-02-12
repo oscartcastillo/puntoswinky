@@ -337,6 +337,7 @@
             @break
 
         @case('/encuestas')
+            <script type="text/javascript" src="{{ asset('js/jquery.table2excel.js')}}"></script>
             <script type="text/javascript" src="{{ asset('js/encuesta.js')}}"></script>
             @break
 

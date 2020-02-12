@@ -43,12 +43,8 @@ $('.modal-footer').on('click', '.add', function() {
         },
         success: function(data) {
             if ((data.errors)) {
-
-                //$('#addModal').modal('show');
                 setTimeout(function () {
-                    
                     $('#addModal').modal('show');
-
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
@@ -57,19 +53,7 @@ $('.modal-footer').on('click', '.add', function() {
                         showConfirmButton: false,
                         timer: 500
                     });
-                    
-                    //toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
-                
                 }, 500);
-
-                /*Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error en Validación!!!',
-                    showConfirmButton: false,
-                    timer: 2000
-                });*/
 
                 if (data.errors.nombre) {
                     $('.errorNombre').show();
@@ -120,10 +104,7 @@ $('.modal-footer').on('click', '.add', function() {
                     showConfirmButton: false,
                     timer: 5000
                 });
-                //toastr.success('Usuario agregado con Exito!', 'Success Alert', {timeOut: 5000});
-
                 $('#postTable').prepend("<tr class='item" + data.id + "'><td style='display: table-cell;' class='footable-first-visible tarjeta'>" + data.tarjeta + "</td><td style='display: table-cell; text-transform: capitalize;'>" + data.nombre +" "+ data.apellidos + "</td><td style='display: table-cell;'>" + data.email + "</td><td style='display: table-cell;' class='fecha-t'>" + data.cumpleanos + "</td><td style='display: table-cell;'>"+ data.estatus +"</td><td style='display: table-cell;' class='footable-last-visible'><button class='show-modal btn btn-success' data-id='" + data.id + "' data-nombre= '" + data.nombre + "' data-apellidos= '" + data.apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.cumpleanos + "' data-telefono= '" + data.telefono + "' data-compania= '" + data.compania + "' data-genero= '" + data.genero + "' data-estatus= '" + data.estatus + "' data-tipo= '" + data.tipo + "' data-tarjeta= '" + data.tarjeta + "'style='min-width: 100px;'><span class='glyphicon glyphicon-eye-open'></span> Ver </button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-nombre= '" + data.nombre + "' data-apellidos= '" + data.apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.cumpleanos + "' data-telefono= '" + data.telefono + "' data-compania= '" + data.compania + "' data-genero= '" + data.genero + "' data-estatus= '" + data.estatus + "'data-tipo= '" + data.tipo + "' data-tarjeta= '" + data.tarjeta + "' style='min-width: 100px;'><span class='glyphicon glyphicon-edit'></span> Editar </button></td></tr>");
-
                 actualiza_td();
             }
         },
@@ -257,7 +238,7 @@ $('.modal-footer').on('click', '.edit', function() {
             else {
                 toastr.success('Usuario Editado con Exito!', 'Success Alert', {timeOut: 5000});
                 
-                $('.item' + data.id).replaceWith("<tr class='item"+data.id+"'><td style='display: table-cell;' class='footable-first-visible tarjeta'>"+ data.perfil.perfil_tarjeta +"</td><td style='display: table-cell; text-transform: capitalize;'>"+data.perfil.perfil_nombre+" "+data.perfil.perfil_apellidos+"</td><td style='display: table-cell;'>"+data.email+"</td><td style='display: table-cell;' class='fecha-t'>"+data.perfil.perfil_nacimiento+"</td><td style='display: table-cell;' id='red'>"+data.estatus+"</td><td style='display: table-cell;' class='footable-last-visible'><button class='show-modal btn btn-success' data-id='" + data.id + "' data-nombre= '" + data.perfil.perfil_nombre + "' data-apellidos= '" + data.perfil.perfil_apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.perfil.perfil_nacimiento + "' data-telefono= '" + data.perfil.perfil_celular + "' data-compania= '" + data.perfil.perfil_compania + "' data-tipo= '" + data.perfil.tipo_perfil_id + "' data-genero= '" + data.perfil.perfil_genero + "' data-estatus= '" + data.estatus + "' data-tarjeta= '" + data.perfil.perfil_tarjeta + "' style='min-width: 100px;'><span class='glyphicon glyphicon-eye-open'></span> Ver</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-nombre= '" + data.perfil.perfil_nombre + "' data-apellidos= '" + data.perfil.perfil_apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.perfil.perfil_nacimiento + "' data-telefono= '" + data.perfil.perfil_celular + "' data-compania= '" + data.perfil.perfil_compania + "' data-tipo= '" + data.perfil.tipo_perfil_id + "' data-genero= '" + data.perfil.perfil_genero + "' data-estatus= '" + data.estatus + "' data-tarjeta= '" + data.perfil.perfil_tarjeta + "' style='min-width: 100px;'><span class='glyphicon glyphicon-edit'></span> Editar</button></td><tr>");
+                $('.item' + data.id).replaceWith("<tr class='item"+data.id+"'><td style='display: table-cell;' class='footable-first-visible tarjeta'>"+ data.perfil.perfil_tarjeta +"</td><td style='display: table-cell; text-transform: capitalize;'>"+data.perfil.perfil_nombre+" "+data.perfil.perfil_apellidos+"</td><td style='display: table-cell;'>"+data.email+"</td><td style='display: table-cell;' class='fecha-t'>"+data.perfil.perfil_nacimiento+"</td><td style='display: table-cell;' class='estatus_general'>"+data.estatus+"</td><td style='display: table-cell;' class='footable-last-visible'><button class='show-modal btn btn-success' data-id='" + data.id + "' data-nombre= '" + data.perfil.perfil_nombre + "' data-apellidos= '" + data.perfil.perfil_apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.perfil.perfil_nacimiento + "' data-telefono= '" + data.perfil.perfil_celular + "' data-compania= '" + data.perfil.perfil_compania + "' data-tipo= '" + data.perfil.tipo_perfil_id + "' data-genero= '" + data.perfil.perfil_genero + "' data-estatus= '" + data.estatus + "' data-tarjeta= '" + data.perfil.perfil_tarjeta + "' style='min-width: 100px;'><span class='glyphicon glyphicon-eye-open'></span> Ver</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-nombre= '" + data.perfil.perfil_nombre + "' data-apellidos= '" + data.perfil.perfil_apellidos + "' data-email= '" + data.email + "' data-cumpleanos= '" + data.perfil.perfil_nacimiento + "' data-telefono= '" + data.perfil.perfil_celular + "' data-compania= '" + data.perfil.perfil_compania + "' data-tipo= '" + data.perfil.tipo_perfil_id + "' data-genero= '" + data.perfil.perfil_genero + "' data-estatus= '" + data.estatus + "' data-tarjeta= '" + data.perfil.perfil_tarjeta + "' style='min-width: 100px;'><span class='glyphicon glyphicon-edit'></span> Editar</button></td><tr>");
 
                 $("#form-edit").trigger("reset");
                 $('#compania_edit option:selected').removeAttr('selected');

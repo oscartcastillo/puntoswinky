@@ -62,14 +62,14 @@
 		@foreach($data as $user)
 		<tr>
 			<td>{{ $user->perfil->perfil_tarjeta}}</td>
-			<td style="text-transform: capitalize;">{{ $user->perfil->perfil_nombre}}</td>
-			<td class="capital">{{ $user->perfil->perfil_apellidos}}</td>
+			<td>{{ ucwords($user->perfil->perfil_nombre) }}</td>
+			<td>{{ ucwords($user->perfil->perfil_apellidos) }}</td>
 			<td>{{ $user->email }}</td>
 			<td>{{ $user->perfil->perfil_genero}}</td>
 			<td>{{ $user->perfil->perfil_nacimiento}}</td>
 			<td>{{ $user->perfil->perfil_celular}}</td>
-			<td class="capital">{{ $user->perfil->perfil_compania}}</td>
-			<td class="capital">{{ $user->perfil->perfil_tipo}}</td>
+			<td>{{ $user->perfil->perfil_compania}}</td>
+			<td>{{ $user->perfil->perfil_tipo}}</td>
 			<td>{{ $user->estatus}}</td>
 		</tr>
 		@endforeach

@@ -6,12 +6,10 @@
 		$('#seach').keyup(function(){
 			var dato = $(this).val();
 			if( dato != ''){
-				var _token = $('input[name="_token"]').val();
 				$.ajax({
 					url:"cliente_ajax",
 					method:"GET",
 					data:{
-						_token:_token,
 						dato:dato
 					},
 					success:function(data){
@@ -29,7 +27,7 @@
 		var valores = $(this).text();
 		var nvalores = valores.split('|');
 		if (nvalores.length > 1) {
-			var id = $('#id').val();
+			var id = $(this).find('#id').val();
 			recall(id);
 		}
 		else{
@@ -41,22 +39,40 @@
 
 	});
 	$(document).on('click', '.activo', function() {
-		$.ajax({
-			type: 'POST',
-			url: 'bonos',
-			data: {
-				'_token': $('input[name=_token]').val(),
-				'user_id' : $('#user_id').val(),
-				'tiempo_id': $(this).data('id')
-			},
-			success: function(data) {
-				
-				modifica_tiempo(
-					data.detalle_bono_estatus, 
-					data.tiempo_id,
-					data.empresa_nombre,
-					data.updated_at
-				);
+
+		Swal.fire({
+			title: 'Da clic para confirmar',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Confirmar!'
+		}).then((result) => {
+			if (result.value) {
+				Swal.fire(
+					'Entregado!',
+					'Has entregado el tiempo seleccionado.',
+					'success'
+					);
+
+				$.ajax({
+					type: 'POST',
+					url: 'bonos',
+					data: {
+						'_token': $('input[name=_token]').val(),
+						'user_id' : $('#user_id').val(),
+						'tiempo_id': $(this).data('id')
+					},
+					success: function(data) {
+						
+						modifica_tiempo(
+							data.detalle_bono_estatus, 
+							data.tiempo_id,
+							data.empresa_nombre,
+							data.updated_at
+						);
+					}
+				});
 			}
 		});
 	});
@@ -106,13 +122,14 @@
 						icon: 'success',
 						title: 'Transaccion Realizada!!!',
 						showConfirmButton: false,
-						timer: 5000
+						timer: 2000
 					});
 					recall(data.user_id);
 					
 					$('#tipo').val('');
-					$('#inicio').val(moment().format('DD-MM-YYYY'));
+					$('#inicio').val('');
 					$('#fin').val('');
+
 				}
 			}
 		});
@@ -122,18 +139,11 @@
 
 function recall(id){
 
-	var _token = $('input[name="_token"]').val();
-	//var id = $('#id').val();
 	$.ajax({
 		url:"get_bonos/"+id,
 		method:"GET",
-		data:{
-			_token:_token,
-		},
 		success:function(data){
-
 			ocultar();
-
 			if (data.bonos_vencidos != null) {
 				$('.historico').show();
 				$('#expiro').text(bonos_vencidos.bono_fin);
@@ -181,6 +191,7 @@ function recall(id){
 				$('#bono_nombre').text(data.bonos.tipo_bono.tipo_bono_nombre);
 				$('#bono_inicio').text(data.bonos.bono_inicio);
 				$('#bono_fin').text(data.bonos.bono_fin);
+				//$('#inicio').val(data.bonos.bono_fin);
 				
 			}
 
@@ -293,8 +304,6 @@ function modifica_tiempo(estatus, id, empresa, hora){
 
 
 $(document).ready(function() {
-
-	$('#inicio').val(moment().format('DD-MM-YYYY'));
 	
 	$(function() {
 		$('.datepicker').datepicker({
@@ -303,10 +312,12 @@ $(document).ready(function() {
 			changeMonth: false,
 			changeYear: false,
 			beforeShowDay: $.datepicker.noWeekends,
-			minDate: 0,
+			minDate: new Date('2020-02-16'),
+			//minDate: 0,
 			inline: true
 		});
 	});
+	
 	$.datepicker.regional['es'] = {
 		closeText: 'Cerrar',
 		prevText: '<Ant',
@@ -327,28 +338,45 @@ $(document).ready(function() {
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 });
 
-
 function actualiza_fechas(){
 
 	var tipo = $('#tipo').val();
+	var ultima_fecha = '';
 	
 	if (tipo != ''){
 		$("#inicio").prop("disabled", false);
+
+		var id = $('#user_id').val();
+		
+		$.ajax({
+			type: 'GET',
+			url: 'bonos/'+id,
+			async: false,
+			success: function(data) {
+				ultima_fecha = data.fin;
+			}
+		});
 	}
 	else{
 		$("#inicio").prop("disabled", true);
 	}
 
-	if ( tipo == 1 || tipo == 2 ) {
+	$("#inicio").val(ultima_fecha);
+	
+	var dateMomentObject = moment(ultima_fecha, "DD/MM/YYYY");
+	var fecha_fecha = dateMomentObject.toDate();
 
-		var fecha = $("#inicio").datepicker("getDate");
-		var nueva = valida_mes(fecha);
+	$('.datepicker').datepicker({
+		minDate: new Date(ultima_fecha)
+	});
+
+	if ( tipo == 1 || tipo == 2 ) {
+		var nueva = valida_mes(fecha_fecha);
 		$("#fin").datepicker("setDate", nueva);
 	}
 	if ( tipo == 3 || tipo == 4 ) {
-		
-		var fecha2 = $("#inicio").datepicker("getDate");
-		var semanal = new Date(fecha2.getFullYear(), fecha2.getMonth(), fecha2.getDate()+6);
+
+		var semanal = new Date(fecha_fecha.getFullYear(), fecha_fecha.getMonth(), fecha_fecha.getDate()+6);
 		$("#fin").datepicker("setDate", semanal);
 	}
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Hash;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -30,6 +31,13 @@ use App\Transaccion;
 
 class UsuariosController extends Controller
 {
+
+    //pub $dt = new Carbon\Carbon();
+    //pub $today = $dt->today();
+    //protected $tomorrow = $dt->tomorrow();
+
+    //$rules = [ ... 'birth_date' => 'required|date|before:'.$today.'|after:01-jan-1920', 'another_date' => 'required|date|before:'.$tomorrow.'|after:01-jan-1990' ];
+
     //reglas administrador y supervisor
     protected $rules_a_s =
     [
@@ -38,9 +46,11 @@ class UsuariosController extends Controller
         'estatus'=> 'required',
         'ciudad' => 'required',
         'empresa' => 'required',
-        'nombre'=> 'required',
-        'apellidos'=> 'required',
+        'cumpleanos' => 'before:2010-01-01|after:1950-01-01',
+        'nombre'      => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+        'apellidos'      => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
         'genero'=> 'required'
+
     ];
 
     //reglas gerente
@@ -49,9 +59,10 @@ class UsuariosController extends Controller
         'rol'=> 'required',
         'email' => 'required|email|unique:users',
         'estatus'=> 'required',
-        'nombre'=> 'required',
-        'apellidos'=> 'required',
-        'genero'=> 'required'
+        'genero'=> 'required',
+        'cumpleanos' => 'before:2010-01-01|after:1950-01-01',
+        'nombre'      => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+        'apellidos'      => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
     ];
 
     public function __construct()
@@ -232,7 +243,7 @@ class UsuariosController extends Controller
             $user = new User();
             $user->name= $request->rol;
             $user->email = strtolower($request->email);
-            $user->password = 'winkyfan';
+            $user->password = Hash::make(Input::get('winkyfan'));
             $user->estatus = $request->estatus;
             $user->puntos_reset = Carbon::now()->format('Y-m-d');
             $user->save();
@@ -245,6 +256,7 @@ class UsuariosController extends Controller
             $perfil->perfil_apellidos = strtolower($request->apellidos);
             $perfil->perfil_tarjeta = $tarjeta_new;
             $perfil->perfil_genero = $request->genero;
+            $perfil->avatar_id = 0;
             $perfil->perfil_nacimiento = $request->cumpleanos;
             $perfil->perfil_celular = $request->telefono;
             $perfil->tipo_perfil_id = 1;
@@ -269,8 +281,6 @@ class UsuariosController extends Controller
             $empresa_n = Empresa::select('empresa_nombre')->where('id','=', $perfil->empresa_id)->first();
 
             $todo['id'] = $user->id;
-            //$todo['rol'] = $rol;
-            $todo['rol_id'] = $rol;
             $todo['ciudad_nombre'] = $ciudad_n->ciudad_nombre;
             $todo['empresa_nombre'] = $empresa_n->empresa_nombre;
 
@@ -315,25 +325,27 @@ class UsuariosController extends Controller
             case 'admin':
             case 'super':
                 $validator = Validator::make($request->all(), [
-                    'rol'=> 'required',
-                    'email' => 'required|email|unique:users,email,'.$id,
-                    'estatus'=> 'required',
-                    'ciudad' => 'required',
-                    'telefono'=> 'min:7|max:12',
-                    'empresa' => 'required',
-                    'nombre'=> 'required',
-                    'apellidos'=> 'required'
+                    'rol'        => 'required',
+                    'email'      => 'required|email|unique:users,email,'.$id,
+                    'estatus'    => 'required',
+                    'ciudad'     => 'required',
+                    'telefono'   => 'min:7|max:12',
+                    'cumpleanos' => 'before:2010-01-01|after:1950-01-01',
+                    'empresa'    => 'required',
+                    'nombre'     => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+                    'apellidos'  => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'
                 ]);
                 $bandera = 1;
             break;
             case 'geren':
                 $validator = Validator::make($request->all(), [
                     'rol'=> 'required',
-                    'estatus'=> 'required',
-                    'nombre'=> 'required',
-                    'apellidos'=> 'required',
-                    'email' => 'required|email|unique:users,email,'.$id,
-                    'genero'=> 'required'
+                    'estatus'    => 'required',
+                    'nombre'     => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+                    'apellidos'  => 'required|min:2|max:30|regex:/^([a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+                    'cumpleanos' => 'before:2010-01-01|after:1950-01-01',
+                    'email'      => 'required|email|unique:users,email,'.$id,
+                    'genero'     => 'required'
                 ]);
                 $bandera = 0;
             break;
