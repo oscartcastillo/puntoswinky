@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
 
     <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/flickity@2.2.1/dist/flickity.css">
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> 
 
 </head>

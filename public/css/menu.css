@@ -176,3 +176,8 @@ h3 {
 		opacity: .5;
 	}
 }
+
+#desktop{
+	width: 80%;
+	margin: auto;
+}
