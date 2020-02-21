@@ -172,7 +172,6 @@ class ReportesController extends Controller
 
     public function genera_reporte(Request $request){
 
-
         $tipo = $request->data['tipo'];
         
         switch ($tipo) {
