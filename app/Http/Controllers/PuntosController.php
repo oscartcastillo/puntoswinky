@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Response;
 use Validator;
 use PDF;
+//use PDFS;
 
 use App\Perfil;
 use App\User;
@@ -275,7 +276,6 @@ class PuntosController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-
         $validator = Validator::make(Input::all(),['motivo' => 'required']);
         
         if ($validator->fails()) {
@@ -470,7 +470,7 @@ class PuntosController extends Controller
             $user = User::find($transacciones->user_id);
         }
         
-        $pdf = PDF::loadView('admin.plantillas_export.estado_cuenta', compact('transacciones', 'user', 'puntos', 'tipo'));
+        $pdf = PDF::loadView('admin.reportes.estado_cuenta', compact('transacciones', 'user', 'puntos', 'tipo'));
         
         return $pdf->download($user->perfil->perfil_nombre." ".$user->perfil->perfil_apellidos.'.pdf');
 
@@ -535,9 +535,30 @@ class PuntosController extends Controller
     public function imprime($id)
     {
         $transaccion = Transaccion::findOrFail($id);
-        
-        $pdf = PDF::loadView('admin.plantillas_export.transacciones', compact('transaccion'));
-        //return $pdf->download('transaccion.pdf');
+        $user = User::findOrFail($transaccion->user_id);
+        $puntos = $this->get_puntos($user->id);
+
+        $pdf = PDF::loadView('admin.reportes.transacciones', compact('transaccion', 'user', 'puntos'));
         return $pdf->stream();
+
+        //$pdf = PDFS::loadView('admin.reportes.transacciones', compact('user', 'transacciones'));
+        //return $pdf->inline('transacciones.pdf');
+    }
+
+    public function mostrar_ticket(){
+
+        $user = User::findOrFail(535);
+        $transacciones = Transaccion::findOrFail(5);
+        $tipo = 'especifico';
+
+        return view('admin.reportes.estado_cuenta', compact('user', 'transacciones', 'tipo'));
+
+    }
+
+    public function correo_prueba(){
+
+        $user = User::findOrFail(535);
+        $transaccion = Transaccion::findOrFail(13);
+        Mail::to('prueba@test.uvp.mx')->send(new TransaccionMail($user, $transaccion));
     }
 }

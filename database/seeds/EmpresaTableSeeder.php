@@ -13,19 +13,11 @@ class EmpresaTableSeeder extends Seeder
     public function run()
     {
         $empresa = new Empresa();
-        $empresa->empresa_nombre = 'Calmecac';
-        $empresa->empresa_ubicacion = '3 SUR COLONIA EL CERRITO';
+        $empresa->empresa_nombre = 'Winky';
+        $empresa->empresa_ubicacion = 'Calle 3 Sur 5758 El Cerrito';
         $empresa->empresa_cp = '72440';
-        $empresa->empresa_numero = '2140601';
+        $empresa->empresa_numero = '222 214 0601';
         $empresa->ciudad_id = 1;
-        $empresa->save();
-
-        $empresa = new Empresa();
-        $empresa->empresa_nombre = 'Zocalo';
-        $empresa->empresa_ubicacion = '3 SUR COLONIA EL CERRITO';
-        $empresa->empresa_cp = '72440';
-        $empresa->empresa_numero = '2140601';
-        $empresa->ciudad_id = 2;
         $empresa->save();
     }
 }

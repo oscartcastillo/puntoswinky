@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('estatus');
-            $table->date('puntos_reset');
+            $table->date('puntos_reset')->useCurrent();
             $table->rememberToken();
             $table->timestamps();
         });

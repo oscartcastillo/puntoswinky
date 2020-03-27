@@ -36,7 +36,6 @@
 			$('#telefono').empty();
 		}
 		$('#result').fadeOut();
-
 	});
 	$(document).on('click', '.activo', function() {
 

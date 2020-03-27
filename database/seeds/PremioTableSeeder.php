@@ -11,7 +11,7 @@ class PremioTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('premios')->insert([
+        /*DB::table('premios')->insert([
             'premio_nombre' => 'taza 1',
             'premio_descripcion' => 'taza modelo 1',
             'premio_imagen' => 'premio.png',
@@ -33,6 +33,6 @@ class PremioTableSeeder extends Seeder
             'empresa_id' => 1,
             'clasificacion_id' => 1,
             'user_id' => 1,
-        ]);
+        ]);*/
     }
 }

@@ -18,14 +18,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(TipoPerfilTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
-        $this->call(TipoPromocionTableSeeder::class);
-        $this->call(PromocionTableSeeder::class);
-        $this->call(ParticipanteTableSeeder::class);
-        $this->call(PremioTableSeeder::class);
-        $this->call(TransaccionesTableSeeder::class);
+        //$this->call(TipoPromocionTableSeeder::class);
+        //$this->call(PromocionTableSeeder::class);
+        //$this->call(ParticipanteTableSeeder::class);
+        //$this->call(PremioTableSeeder::class);
+        //$this->call(TransaccionesTableSeeder::class);
         $this->call(TipoBonoTableSeeder::class);
         $this->call(TiempoTableSeeder::class);
-        $this->call(BonoTableSeeder::class);
-        $this->call(BonoDetalleTableSeeder::class);
+        //$this->call(BonoTableSeeder::class);
+        //$this->call(BonoDetalleTableSeeder::class);
     }
 }

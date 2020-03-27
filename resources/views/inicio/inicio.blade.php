@@ -38,17 +38,19 @@
 	                    	</div>
 	                        <div class="form-group">
 	                            <a class="contr" href="{{ route('password.request') }}">Olvidaste tu contraseña ?</a>
-	                            <input class="btn ingresa" type="submit" value="Ingresar">
+	                        </div>
+	                        <div class="form-group">
+	                        	<input class="btn ingresa" type="submit" value="Ingresar">
 	                        </div>
 	                    </form>
 	                	<div class="sociales row">
-	                		<div class="col-md-4 text-center">
+	                		<div class="col-4 col-md-4 text-center">
 	                			<a href=""><i class="fab fa-twitter"></i></a>
 	                		</div>
-	                		<div class="col-md-4 text-center">
+	                		<div class="col-4 col-md-4 text-center">
 	                			<a href=""><i class="fab fa-facebook-f"></i></a>
 	                		</div>
-	                		<div class="col-md-4 text-center">
+	                		<div class="col-4 col-md-4 text-center">
 	                			<a href=""><i class="fab fa-instagram"></i></a>
 	                		</div>
 		                </div>

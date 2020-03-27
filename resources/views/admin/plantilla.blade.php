@@ -22,20 +22,21 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('footable/css/footable.bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
 
-    <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.min.css"> -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/flickity@2.2.1/dist/flickity.css">
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> 
 
 </head>
 <body class="app sidebar-mini rtl">
     <header class="app-header">
-        <a class="app-header__logo" href="index.html"><strong>Puntos</strong> de Lealtad</a>
+        <a class="app-header__logo" href="/"><strong>Puntos</strong> de Lealtad</a>
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
         <ul class="app-nav">
+            <li class="d-none d-md-block p-3 text-capitalize" style="font-size: 1rem ; font-family: poppins;">
+                {{ Auth::user()->perfil->full_name }}
+            </li>
             <li class="dropdown">
                 <a class="app-nav__item text-uppercase" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
-                    {{-- <i class="fa fa-user fa-lg"></i> --}}
-                    <img src="{{ asset('img/avatar-0.png') }}" alt="" style="width: 40px;">
+                    <img src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png" alt="" style="width: 40px;">
                 </a>
                 <ul id="options" class="dropdown-menu settings-menu dropdown-menu-right">
                     <li><a class="dropdown-item" href="{{ route('perfil.index') }}"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
@@ -51,10 +52,9 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <div class="app-sidebar__user">
-            {{--<img id="img-avatar" class="user-img avatar-4" src="http://puntos4.test.uvp.mx/img/avatar-4.png">
-             src="{{ asset('img/perfil.png') }}"  --}}
-            <img class="app-sidebar__user-avatar user-img" src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png" alt="User Image" style="width: 40%;">
+            <img class="app-sidebar__user-avatar user-img" src="../img/avatar-{{ Auth::User()->perfil->avatar_id }}.png" alt="User Image">
             <div>
+                <p id="name_people" class="text-capitalize">{{ Auth::user()->perfil->full_name }}</p>
             </div>
         </div>
         <img class="img-fluid" id="slider-logo" src="{{asset('img/logo.png')}}" alt="">

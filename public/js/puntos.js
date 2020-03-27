@@ -26,16 +26,11 @@ $(document).ready(function(){
 		var valores = $(this).text();
 		var nvalores = valores.split('|');
 		if (nvalores.length > 1) {
-			var _token = $('input[name="_token"]').val();
 			var id = $('#id').val();
 			$.ajax({
 				url:"get_puntos/"+id,
 				method:"GET",
-				data:{
-					_token:_token,
-				},
 				success:function(data){
-					
 					$('#mov').empty();
 					$('#list_premios').empty();
 					$('#user_id').val(data.user.id);

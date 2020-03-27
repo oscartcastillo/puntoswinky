@@ -2,9 +2,23 @@
 	"use strict";
 	var treeviewMenu = $('.app-menu');
 	$('[data-toggle="sidebar"]').click(function(event) {
+		
 		event.preventDefault();
+		
 		$('.app').toggleClass('sidenav-toggled');
+
+
+		$('#user-img').toggle(function () {
+			$("#user-img").css('width','100%');
+		}, function () {
+			$("#user-img").css('width', '40%');
+		});
+
+		$('#slider-logo , #name_people').toggleClass('invisible');
+
 	});
+	
+
 	$("[data-toggle='treeview']").click(function(event) {
 		event.preventDefault();
 		if(!$(this).parent().hasClass('is-expanded')) {

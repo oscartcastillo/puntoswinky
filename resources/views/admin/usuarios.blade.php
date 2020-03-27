@@ -14,8 +14,8 @@
     			<div class="tile">
     				<div class="tile-body">
                         <p class="bs-component">
-                            <a class="btn btn-primary" href="{{ URL::to('/export_pdf') }}">Exportar Listado del Personal a PDF</a>
-                            <a class="btn btn-primary" href="{{ URL::to('/export_excel') }}">Exportar Listado del Personal a EXCEL</a>
+                            <a class="btn btn-primary mt-3" href="{{ URL::to('/export_pdf') }}">Exportar PDF <i class="fas fa-file-pdf"></i></a>
+                            <a class="btn btn-primary mt-3" href="{{ URL::to('/export_excel') }}">Exportar Excel <i class="fas fa-file-excel"></i></a>
                         </p>
                         <table id="postTable" class="table table-hover table-bordered table-dark" data-show-toggle="true" data-paging-size="10"  data-paging="true">
     						<thead>

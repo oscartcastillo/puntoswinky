@@ -12,12 +12,12 @@ class TipoPromocionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_promocion')->insert([
+        /*DB::table('tipo_promocion')->insert([
             'nombre' => 'aniversario',
         ]);
 
         DB::table('tipo_promocion')->insert([
             'nombre' => 'cumpleaños',
-        ]);
+        ]);*/
     }
 }

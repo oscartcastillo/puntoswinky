@@ -13883,6 +13883,7 @@ table.dataTable tbody tr {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   margin-right: 15px;
+  width: 40%;
 }
 
 .app-sidebar__user-name {
@@ -15428,9 +15429,22 @@ table{
   z-index:2;
 }
 
+.form-inline{
+  margin-top: 1%
+}
+
 @media (max-width: 768px) {
   .ir-arriba{
     display: none;
+  }
+  .app-header{
+    background-color: #4d2770;
+  }
+  .app-sidebar__toggle::before{
+    color: white;
+  }
+  .form-inline{
+    margin-top: 10%;
   }
 
 }

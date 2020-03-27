@@ -11,7 +11,7 @@ class PromocionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('promociones')->insert([
+        /*DB::table('promociones')->insert([
             'promocion_nombre' => 'Evento 1',
             'promocion_codigo' => 'DCFRTS',
             'promocion_tipo' => 'puntos',
@@ -39,6 +39,6 @@ class PromocionTableSeeder extends Seeder
             'promocion_fin' => '2019-11-29 00:00:00',
             'promocion_estatus' => 'A',
             'user_id' => '1',
-        ]);
+        ]);*/
     }
 }

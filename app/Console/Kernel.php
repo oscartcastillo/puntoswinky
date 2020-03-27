@@ -27,10 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('vigencia:puntos')->dailyAt('11:20');
-        $schedule->command('vigencia:bonos')->dailyAt('11:30');
-        $schedule->command('vigencia:clasificacion')->dailyAt('11:40');
-        $schedule->command('correo:cumpleanos')->dailyAt('11:50');
+        $schedule->command('vigencia:puntos')->dailyAt('07:20');
+        $schedule->command('vigencia:bonos')->dailyAt('07:30');
+        $schedule->command('vigencia:clasificacion')->dailyAt('07:40');
+        $schedule->command('correo:cumpleanos')->dailyAt('07:50');
         //$schedule->command('cumple:users')->daily()->at('17:40');
     }
 

@@ -183,6 +183,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
     ],
 
@@ -240,6 +241,8 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'PDFS' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

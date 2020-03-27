@@ -11,7 +11,7 @@ class ParticipanteTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('participantes')->insert([
+        /*DB::table('participantes')->insert([
             'ciudad_id' => '1',
             'empresa_id' => '1',
             'promocion_id' => '1',
@@ -33,6 +33,6 @@ class ParticipanteTableSeeder extends Seeder
             'ciudad_id' => '2',
             'empresa_id' => '2',
             'promocion_id' => '2',
-        ]);
+        ]);*/
     }
 }

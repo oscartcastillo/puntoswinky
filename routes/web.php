@@ -67,4 +67,10 @@ Route::get('404',['as'=>'404','uses'=>'ErrorHandlerController@errorCode404']);
 Route::get('405',['as'=>'405','uses'=>'ErrorHandlerController@errorCode405']);
 
 
+
+Route::get('/genera_correo', 'PuntosController@correo_prueba')->name('prueba_correo');
+
+Route::get('/ticket_impresion', 'PuntosController@mostrar_ticket')->name('ticket_impresion');
+
+
 ?>
